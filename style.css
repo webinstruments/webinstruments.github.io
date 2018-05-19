@@ -1,0 +1,29 @@
+.line {
+    stroke: red;
+    stroke-width: 0.5%;
+}
+
+.line.gridLine {
+    stroke: coral;
+    stroke-width: 1%;
+    stroke-dasharray: 20% 5%;
+    stroke-opacity: 0.5;
+}
+
+.line.gridLine.half {
+    stroke: darkred;
+    stroke-width: 0.5%;
+    stroke-dashoffset: 20%;
+    stroke-dasharray: 10% 20%;
+    stroke-opacity: 0.3;
+}
+
+.text.selectedValue {
+    fill: orangered;
+    stroke: black;
+    stroke-width: 0.1;
+}
+
+.cursorGradientColor {
+    stop-color: yellow;
+}
