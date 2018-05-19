@@ -1,0 +1,99 @@
+.helper {
+    stroke: darkorange;
+    stroke-width: 1;
+}
+
+.text {
+    fill:white;
+    font-size: 8px;
+}
+
+.text.yAxis {
+    fill:black;
+}
+
+.line.maxValue {
+    stroke: darkred;
+    stroke-width: 0.5%;
+    stroke-dasharray: 5% 2%;
+    stroke-opacity: 0.5;
+    stroke-linecap: round;
+}
+
+.line.minValue {
+    stroke: dodgerblue;
+    stroke-width: 0.5%;
+    stroke-dasharray: 5% 2%;
+    stroke-dashoffset: 1%;
+    stroke-opacity: 0.5;
+    stroke-linecap: round;
+}
+
+.text.minIndicator {
+    fill: dodgerblue;
+}
+
+.text.maxIndicator {
+    fill: greenyellow;
+}
+
+.text.maxval {
+    fill: yellow;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.poly {
+    stroke: black;
+    stroke-width: 2;
+    fill: none;
+}
+
+.loop {
+    stroke: black;
+    fill: none;
+}
+
+.circle {
+    fill: green;
+}
+
+#axisY {
+    background-color: floralwhite;
+}
+
+#container {
+    background-color: lightskyblue;
+}
+
+.cursorGradientColor {
+    stop-color: skyblue;
+}
+
+.path {
+    fill:darkslategray;
+    opacity: 0.7;
+    stroke: mistyrose;
+    stroke-width: 3;
+}
+
+.text.selectedValueBelow {
+    fill:indianred;
+}
+
+.text.selectedValue {
+    fill:orangered;
+}
+
+.text.indicatorText {
+    fill:orangered;
+}
+
+.indicatorLine {
+    stroke:orangered;
+    stroke-width: 1;
+}
+
+.barLine {
+    stroke:orangered;
+}

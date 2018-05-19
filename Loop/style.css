@@ -1,0 +1,36 @@
+div {
+    margin: 10px;
+}
+
+.helper {
+    stroke: yellow;
+    stroke-width: 1;
+}
+
+.text {
+    font-size: 0.3px;
+    fill: red;
+}
+
+.loop {
+    stroke: black;
+    fill: none;
+    stroke-width: 8%;
+}
+
+.circle {
+    fill: green;
+}
+
+.rect {
+    fill: red;
+}
+
+.line {
+	stroke: yellow;
+	stroke-width: 1;
+}
+
+.invisible {
+    display: none;
+}

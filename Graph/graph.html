@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--script type="text/javascript" src="svg_gauge.js"></script-->
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script src="../Libraries/utilities.js"></script>
+    <script src="../Libraries/graph.js"></script>
+    <script src="../Libraries/plots.js"></script>
+    <script src="../Libraries/plotAxis.js"></script>
+    <script src="../Libraries/axis.js"></script>
+    <script src="../Libraries/text.js"></script>
+    <script src="../Libraries/gradientBar.js"></script>
+    <script src="../Libraries/line.js"></script>
+</head>
+
+<body onresize="resized()">
+    <div style="width:100%;height:60vh;">
+        <svg id="axisY" style="float:left;" width="3%" height="100%"></svg>
+        <svg id="container" style="float:left;" width="97%" height="100%"></svg>
+    </div>
+    <div style="margin-top: 20px">
+        <input type="text" id="value" />
+        <input type="button" onclick="clearElements()" value="Clear" />
+        <input type="button" onclick="initElements()" value="Init" />
+        <input type="button" onclick="addPoint()" value="add" />
+    </div>
+</body>
+<script>
+    var max = 400;
+    var cont = document.getElementById("container");
+    var axisY = document.getElementById("axisY");
+    /* parent, stepWidth, true */
+    var g = new Graph(cont, 50, true, axisY);
+    g.addValue(400);
+    g.addValue(300);
+    g.addValue(200);
+
+    function addPoint() {
+        var val = parseFloat(document.getElementById("value").value);
+        var rnd = generateRandom(max); //value to display text
+        if (isNaN(val)) {
+            val = rnd;
+        } else if(val > max) {
+            max = val;
+        }
+        g.addValue(val);
+    }
+
+    function resized() {
+        g.onResize();
+    }
+</script>
+
+</html>
