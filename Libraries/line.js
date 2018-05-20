@@ -55,6 +55,10 @@ class Line {
         return this;
     }
 
+    remove() {
+        this.parent.removeChild(this.line);
+    }
+
     get alignment() {
         if(getClientHeight(this.parent) > getClientWidth(this.parent)) {
             return CONST_LINE_ALIGNMENT_VERTICAL;

@@ -66,6 +66,14 @@ class GradientBar extends Axis {
         this.line.onResize();
     }
 
+    remove() {
+        //eigene Kinder entfernen, sonst sieht man die Artefakte (Line ist sichtbar)
+        this.parent.removeChild(this.svg_def);
+        this.parent.removeChild(this.background);
+        this.line.remove();
+        super.remove();
+    }
+
     selectValue(val) {
         var max = this.sorted[this.sorted.length - 1];
         super.selectValue(val);
@@ -92,16 +100,6 @@ class GradientBar extends Axis {
         this.cursor.setAttributeNS(null, "offset", val);
         this.line.move(val);
     }
-
-    /*get maxValue() {
-        var max = parseFloat(this.values[0]);
-        for (var i = 1; i < this.values.length; ++i) {
-            if (parseFloat(this.values[i]) > max) {
-                max = this.values[i];
-            }
-        }
-        return max;
-    }*/
 
     get id() {
         var id = "lg0";
