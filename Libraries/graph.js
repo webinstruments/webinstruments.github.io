@@ -10,7 +10,7 @@ class Graph {
         //Für Resizing
         this.initialWidth = this.clientWidth;
         this.initialHeight = this.clientHeight;
-        this.graphMax = this.clientHeight;
+        this.graphMax = 0;
         this.graphScale = 1.0;
         this.currX = 0;
         this.lineMinVal = NaN;
