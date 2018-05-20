@@ -22,7 +22,7 @@
         <svg id="container" style="float:left;" width="97%" height="100%"></svg>
     </div>
     <div style="margin-top: 20px">
-        <input type="number" id="value" onkeydown="entered()" />
+        <input type="number" pattern="[0-9]*" placeholder="enter number (eg. 1600)" id="value" onkeydown="entered()" />
         <input type="button" onclick="addPoint()" value="add" />
         <input type="button" onclick="addPoint(5)" value="addMany" />
     </div>
@@ -39,7 +39,6 @@
 
     function entered() {
         if(event.keyCode == 13) {
-            console.log("Hallo");
             document.getElementById("value").blur();
         }
     }
@@ -48,6 +47,7 @@
         //Workaround für kleine Geräte, da sonst die Achse abgeschnitten wird.
         window.scrollTo(0, 0);
         var val = parseFloat(document.getElementById("value").value);
+        document.getElementById("value").value = "";
         var rnd = generateRandom(max); //value to display text
         if (isNaN(val)) {
             val = rnd;
