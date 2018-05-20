@@ -76,7 +76,9 @@ class PlotAxis {
             //Offset wird um die Höhe der Schrift verringert.
             //Je größer der Wert, desto weiter unten ist der letzte Wert
             remainderPercent += parseFloat(this.textSizePercent);
-            this.axis.svg_axis.setAttribute("height", remainderPercent + "%");
+            if(!isNaN(remainderPercent)) {
+                this.axis.svg_axis.setAttribute("height", remainderPercent + "%");
+            }
         }
     }
 
