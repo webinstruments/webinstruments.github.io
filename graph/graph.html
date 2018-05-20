@@ -4,6 +4,7 @@
 <head>
     <!--script type="text/javascript" src="svg_gauge.js"></script-->
     <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="../controls.css" />
     <script src="../Libraries/utilities.js"></script>
     <script src="../Libraries/graph.js"></script>
     <script src="../Libraries/plots.js"></script>
@@ -20,9 +21,7 @@
         <svg id="container" style="float:left;" width="97%" height="100%"></svg>
     </div>
     <div style="margin-top: 20px">
-        <input type="text" id="value" />
-        <input type="button" onclick="clearElements()" value="Clear" />
-        <input type="button" onclick="initElements()" value="Init" />
+        <input type="number" id="value" />
         <input type="button" onclick="addPoint()" value="add" />
     </div>
 </body>

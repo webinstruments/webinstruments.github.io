@@ -23,13 +23,15 @@ class GradientBar extends Axis {
         this.gradient = this.svg_def.appendChild(createLinearGradient(currId, null, null, null, null));
         this.stop0 = this.gradient.appendChild(createElement("stop"));
         this.stop0.setAttributeNS(null, "offset", "0");
-        this.stop0.setAttributeNS(null, "stop-color", "transparent");
+        //this.stop0.setAttributeNS(null, "stop-color", "transparent"); Safari unterstützt das nicht
+        this.stop0.setAttributeNS(null, "stop-opacity", "0");
         this.cursor = this.gradient.appendChild(createElement("stop"));
         //this.cursor.setAttributeNS(null, "stop-color", "yellow");
         this.cursor.setAttributeNS(null, "class", CONST_GB_CURSOR_STOP_CLASS);
         this.stop2 = this.gradient.appendChild(createElement("stop"));
         this.stop2.setAttributeNS(null, "offset", "100%");
-        this.stop2.setAttributeNS(null, "stop-color", "transparent");
+        //this.stop2.setAttributeNS(null, "stop-color", "transparent"); Comp Safari
+        this.stop2.setAttributeNS(null, "stop-opacity", "0");
         //Rechteck fuer die Anzeige erstellen
         this.background = this.parent.appendChild(createRect(0, 0, "100%", "100%"));
         this.background.setAttributeNS(null, "style", "fill:url(#" + currId + ")");
