@@ -23,7 +23,8 @@
     </div>
     <div style="margin-top: 20px">
         <input type="number" id="value" onkeydown="entered()" />
-        <input id="btn" type="button" onclick="addPoint()" value="add" />
+        <input type="button" onclick="addPoint()" value="add" />
+        <input type="button" onclick="addPoint(5)" value="addMany" />
     </div>
 </body>
 <script>
@@ -43,7 +44,8 @@
         }
     }
 
-    function addPoint() {
+    function addPoint(points) {
+        //Workaround für kleine Geräte, da sonst die Achse abgeschnitten wird.
         window.scrollTo(0, 0);
         var val = parseFloat(document.getElementById("value").value);
         var rnd = generateRandom(max); //value to display text
@@ -53,6 +55,11 @@
             max = val;
         }
         g.addValue(val);
+        if(!isNaN(points)) {
+            for(var i = 1; i < points; ++i) {
+                g.addValue(generateRandom(max));
+            }
+        }
     }
 
     function resized() {
