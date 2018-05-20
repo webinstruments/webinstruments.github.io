@@ -234,7 +234,6 @@ class TextQuadrant {
             this.textQ12(this.texts[0], null, 100);
             if (this.alignment == CONST_QUADRAT_VERT_ALIGN) {
                 //Gesamte Höhe einnehmen
-                //this.textQ12(this.texts[0], null, 100);
                 this.texts[0].alignVertical();
             }
         } else if (this.drawnCount == 2) {
