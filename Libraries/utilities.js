@@ -32,15 +32,19 @@ function createCircle(r, x, y) {
     return cir;
 }
 
-function createText(txt, x, y, decimals = 0) {
+function createText(txt, x, y, decimals) {
     var text = document.createElementNS(SVGNS, "text");
     text.setAttributeNS(null, "x", x);
     text.setAttributeNS(null, "y", y);
     text.setAttributeNS(null, "class", "text");
     //text.setAttributeNS(null, "style", "font-size:" + height + ";")
     text.textContent = txt;
-    if (isNumeric(txt))
+    if (isNumeric(txt)) {
+        if (isNaN(decimals)) {
+            decimals = 0;
+        }
         text.textContent = txt.toFixed(decimals);
+    }
 
     return text;
 }

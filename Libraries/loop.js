@@ -115,12 +115,12 @@ class Loop {
               stroke    <Gewünschte Breite>
               --<----------------------------------->--
         */
-        //45 Grad, damit man das Inner des Kreises bekommt - 45 = Hochformat
+        //45 Grad, damit man das Inner des Kreises bekommt - 45 = Querformat
         if (this.clientHeight > this.clientWidth) {
             //30 Querformat damit mehr Platz nach rechts
             var angle = Math.PI / 6;
         } else {
-            //45 Hochformat
+            //45 Querformat
             var angle = Math.PI / 4;
         }
         var width = ((this.htmlCircleWidth / this.clientWidth * 100 - this.strokeWidth * 2) * Math.cos(angle)) + "%";
@@ -234,7 +234,7 @@ class TextQuadrant {
             this.textQ12(this.texts[0], null, 100);
             if (this.alignment == CONST_QUADRAT_VERT_ALIGN) {
                 //Gesamte Höhe einnehmen
-                this.textQ12(this.texts[0], null, 100);
+                //this.textQ12(this.texts[0], null, 100);
                 this.texts[0].alignVertical();
             }
         } else if (this.drawnCount == 2) {
