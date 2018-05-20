@@ -22,8 +22,8 @@
         <svg id="container" style="float:left;" width="97%" height="100%"></svg>
     </div>
     <div style="margin-top: 20px">
-        <input type="number" id="value" />
-        <input type="button" onclick="addPoint()" value="add" />
+        <input type="number" id="value" onkeydown="entered()" />
+        <input id="btn" type="button" onclick="addPoint()" value="add" />
     </div>
 </body>
 <script>
@@ -36,7 +36,15 @@
     g.addValue(300);
     g.addValue(200);
 
+    function entered() {
+        if(event.keyCode == 13) {
+            console.log("Hallo");
+            document.getElementById("value").blur();
+        }
+    }
+
     function addPoint() {
+        window.scrollTo(0, 0);
         var val = parseFloat(document.getElementById("value").value);
         var rnd = generateRandom(max); //value to display text
         if (isNaN(val)) {

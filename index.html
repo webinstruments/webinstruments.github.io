@@ -6,23 +6,44 @@
     <title>Selection</title>
 </head>
 
+<style>
+    li {
+        margin: 5px;
+        list-style: none;
+        border: 1px solid red;
+        display: block;
+        padding: 10px;
+    }
+
+    .list {
+        width: 50vh;
+    }
+</style>
+
 <body>
     <h1>Welcome</h1>
     <h2>Please select a page</h2>
-    <ul>
-        <li>
-            <a href="axis/gradient.html">Flexible Bar</a>
-        </li>
-        <li>
-            <a href="graph/graph.html">Adaptive Graph</a>
-        </li>
-        <li>
-            <a href="loop/loop.html">Loading Loop</a>
-        </li>
-        <li>
-            <a href="loop/loops.html">More Loops</a>
-        </li>
-    </ul>
+    <div class="list">
+        <ul>
+            <li>
+                <a href="axis/gradient.html">Flexible Bar</a>
+                <p>Just use the slider to mark the numbers.</p>
+            </li>
+            <li>
+                <a href="graph/graph.html">Adaptive Graph</a>
+                <p>Click on add to generate a random number. You can add a customized value by entering it in the input field
+                    and click "add".</p>
+            </li>
+            <li>
+                <a href="loop/loop.html">Loading Loop</a>
+                <p>Just use the slider to mark the numbers.</p>
+            </li>
+            <li>
+                <a href="loop/loops.html">More Loops</a>
+                <p>Just use the slider to mark the numbers.</p>
+            </li>
+        </ul>
+    </div>
 </body>
 
 </html>

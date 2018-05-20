@@ -13,8 +13,10 @@
         <svg id="bar" height="100%" width="100%" style="background-color: aqua;">
         </svg>
     </div>
-    <input id="r" type="range" value="0" min=0 max=10 step="0.2" oninput="inputchange()"/>
-    <span id=val></span>
+    <div>
+        <span style="float:left;font-size: 35px;width:5%;" id=val>0</span>
+        <input id="r" type="range" value="0" min=0 max=10 step="0.2" oninput="inputchange()" />
+    </div>
 </body>
 <script src="../Libraries/utilities.js"></script>
 <script src="../Libraries/text.js"></script>
@@ -23,7 +25,7 @@
 <script src="../Libraries/line.js"></script>
 <script>
     var parent = document.getElementById("bar");
-    var gBar = new GradientBar(parent, [1,2,3,4,5,6,7,8,9,10], "2%");
+    var gBar = new GradientBar(parent, [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "2%");
 
     function inputchange() {
         var r = document.getElementById("r").value;
@@ -32,7 +34,7 @@
     }
 
     function resized() {
-        if(gBar != null) {
+        if (gBar != null) {
             gBar.onResize();
         }
     }
