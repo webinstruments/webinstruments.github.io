@@ -173,7 +173,9 @@ class TextQuadrant {
 
     //Resizing checkt, ob man durch die neue Größe mehr Elemente zeichen kann.
     onResize() {
-        if (this.drawnCount != this.drawCount()) {
+        if (this.drawnCount != this.drawCount() || this.lastAlignment != this.alignment) {
+            //Wenn nicht weggespeichert, dreht sich der Text nicht mit
+            this.lastAlignment = this.alignment; 
             this.alignText();
         }
     }
@@ -352,7 +354,7 @@ class TextQuadrant {
 
     get alignment() {
         //Wenn Top und Width zu nahe beieinander sind ist eine eindeutige Zuordnung nicht möglich
-        if (this.clientWidth * 1.5 > this.clientHeight) {
+        if (this.clientWidth * 1.3 > this.clientHeight) {
             return CONST_QUADRAT_HORZ_ALIGN;
         } else {
             return CONST_QUADRAT_VERT_ALIGN;
