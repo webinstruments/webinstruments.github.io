@@ -144,8 +144,8 @@ class Loop {
     Wenn unförmig, Auswahl von 2 Werten und Aufteilung
 */
 //Absoluter Wert in Pixeln. Wenn dieser über oder unterschritten wird, werden diverse Elemente ausgeblendet
-var CONST_QUADRAT_X_THRESHOLD_VALUE = 140;
-var CONST_QUADRAT_Y_THRESHOLD_VALUE = 100;
+var CONST_QUADRAT_X_THRESHOLD_VALUE = 300;
+var CONST_QUADRAT_Y_THRESHOLD_VALUE = 150;
 var CONST_QUADRAT_HORZ_ALIGN = "horizontal";
 var CONST_QUADRAT_VERT_ALIGN = "vertical";
 //ab diesen Wert werden die Werte, die angezeigt werden gecappt
