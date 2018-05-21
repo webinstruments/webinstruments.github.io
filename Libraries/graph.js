@@ -19,7 +19,6 @@ class Graph {
     }
 
     init(fillArea, yAxis) {
-        this.svg_graph = this.parent.appendChild(createSVG(this.viewBox, "none"));
         //Elemente in dieser Gruppe werden verschoben
         this.transgrp = this.parent.appendChild(createGroup());
         /*
@@ -64,7 +63,6 @@ class Graph {
         //was in xRichtung gemacht werden muss
         if (this.initialWidth != this.clientWidth) {
             //Anpassung der Viewbox auf neue Höhe und Breite
-            this.svg_graph.setAttributeNS(null, "viewBox", this.viewBox);
             this.stepWidth = this.clientWidth * this.stepWidthRelative;
             this.currX *= this.clientWidth / this.initialWidth;
             this.initialWidth = this.clientWidth;
@@ -72,7 +70,6 @@ class Graph {
         }
         //Was in y Richtung gemacht werden muss
         if (this.initialHeight != this.clientHeight) {
-            this.svg_graph.setAttributeNS(null, "viewBox", this.viewBox);
             //indicatorLines
             var factor = this.clientHeight / this.initialHeight;
             if (this.graphMax != null) {
@@ -244,9 +241,5 @@ class Graph {
 
     get clientHeight() {
         return getClientHeight(this.parent);
-    }
-
-    get viewBox() {
-        return "0 0 " + getClientWidth(this.parent) + " " + getClientHeight(this.parent);
     }
 }
