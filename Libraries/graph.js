@@ -29,11 +29,11 @@ class Graph {
             draw(x, y)
         */
         this.plotter = null;
-        if(fillArea == null || fillArea == false) {
+        if (fillArea == null || fillArea == false) {
             //Zum Zeichnen der Polylinie
             this.polygrp = this.transgrp.appendChild(createGroup());
             this.plotter = new PolyLine(this.polygrp);
-        } else if(fillArea != null && fillArea == true) {
+        } else if (fillArea != null && fillArea == true) {
             //Zum Zeichnen der des Path Objekts - Ergibt Fläche unter dem Graphen
             this.surfgrp = this.transgrp.appendChild(createGroup());
             this.plotter = new Surface(this.surfgrp);
@@ -54,7 +54,7 @@ class Graph {
         this.indicatorText.addClass("indicatorText");
 
         //Y Achse
-        if(yAxis != null) {
+        if (yAxis != null) {
             this.yAxis = new PlotAxis(yAxis, this.graphMax, "5%", "5%");
             this.yAxis.addClass("yAxis");
         }
@@ -75,7 +75,7 @@ class Graph {
             this.svg_graph.setAttributeNS(null, "viewBox", this.viewBox);
             //indicatorLines
             var factor = this.clientHeight / this.initialHeight;
-            if(this.graphMax != null) {
+            if (this.graphMax != null) {
                 this.graphScale = this.clientHeight / this.graphMax;
             }
             this.resizeY(factor);
@@ -131,18 +131,6 @@ class Graph {
         }
     }
 
-    //Darstellung des Textes und Linie. (Animation?)
-    moveIndicator(y, val) {
-        this.indicatorLine.setAttribute("y1", y);
-        this.indicatorLine.setAttribute("y2", y);
-        //Text vor verschieben setzen, sonst wirds nicht berücksichtigt
-        //Text ist null beim OnResize
-        if (val != null) {
-            this.indicatorText.setText(val);
-        }
-        this.indicatorText.move("100%", y);
-    }
-
     //Hinzufügen von Elementen, die den Max und Minwert angeben. (Kugeln vielleicht nicht optimal?)
     addMinMaxIndicator(val, x, y) {
         //Im ersten Schritt wird nur der MaxDot geadded. Der Mindot nimmt dann seine Stelle ein, wenn der Wert höher ist, als der letzte.
@@ -182,6 +170,18 @@ class Graph {
         }
     }
 
+    //Darstellung des Textes und Linie. (Animation?)
+    moveIndicator(y, val) {
+        this.indicatorLine.setAttribute("y1", y);
+        this.indicatorLine.setAttribute("y2", y);
+        //Text vor verschieben setzen, sonst wirds nicht berücksichtigt
+        //Text ist null beim OnResize
+        if (val != null) {
+            this.indicatorText.setText(val);
+        }
+        this.indicatorText.move("100%", y);
+    }
+
     //Hilfsfunktion für Indikator
     moveLine(line, y) {
         line.setAttribute("y1", y);
@@ -189,7 +189,7 @@ class Graph {
     }
 
     moveText(text, y, val) {
-        if(val != null) {
+        if (val != null) {
             text.setText(val);
         }
         text.move(0, y);
@@ -204,27 +204,26 @@ class Graph {
         if (val > this.graphMax) {
             this.graphScale = this.clientHeight / val;
             this.plotter.resize(1, this.graphScale, this.graphMax);
-            if(this.maxLine != null) {
+            if (this.maxLine != null) {
                 this.maxIndicatorText.setText(val);
-                if(this.minLine != null) {
+                if (this.minLine != null) {
                     var oldMin = this.graphMax - this.minLine.getAttribute("y1");
                     var newMin = this.graphMax - oldMin * this.graphScale;
                     this.moveLine(this.minLine, newMin);
                     this.moveText(this.minIndicatorText, newMin, null);
                 }
             }
-            if(this.yAxis != null) {
+            if (this.yAxis != null) {
                 this.yAxis.setMax(val);
             }
             this.graphMax = val;
         }
 
+        //Umwandlung Koordinatensystem
+        var yVal = this.clientHeight - (val * this.graphScale); //Umgewandelter Y-Wert. Zur Bestimmung der Höhe (y-value)
         if(this.yAxis != null) {
             this.yAxis.selectValue(val);
         }
-
-        //Umwandlung Koordinatensystem
-        var yVal = this.clientHeight - (val * this.graphScale); //Umgewandelter Y-Wert. Zur Bestimmung der Höhe (y-value)
         //Bereich darf nicht verlassen werden
         if (yVal < 0) {
             yVal = 0;

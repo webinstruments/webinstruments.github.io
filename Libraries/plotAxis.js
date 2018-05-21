@@ -48,7 +48,7 @@ class PlotAxis {
 
         //Höchster Wert oben
         if (this.alignment == CONST_PLOTAXIS_ALIGNMENT_VERTICAL) {
-            for (var i = max; max > 0; ++i) {
+            while (max > 0) {
                 //Auch abbruch, wenn Höhe der Änderung kleiner als die Schrifthöhe ist
                 if (max / calledMax < distance) {
                     break;
@@ -76,7 +76,7 @@ class PlotAxis {
             //Offset wird um die Höhe der Schrift verringert.
             //Je größer der Wert, desto weiter unten ist der letzte Wert
             remainderPercent += parseFloat(this.textSizePercent);
-            if(!isNaN(remainderPercent)) {
+            if (!isNaN(remainderPercent)) {
                 this.axis.svg_axis.setAttribute("height", remainderPercent + "%");
             }
         }
@@ -102,11 +102,8 @@ class PlotAxis {
         this.axis.selectValue(val);
     }
 
-    /*inTenthSteps(val) {
-        if (val < 100) {
-            return Math.floor(val);
-        } else {
-            return Math.ceil(val / 10) * 10;
-        }
-    }*/
+    //Zur Berechnung der tatsächlichen Textposition
+    get axisTextSizePercent() {
+        return this.axis.textSize;
+    }
 }
