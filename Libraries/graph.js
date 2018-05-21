@@ -13,6 +13,8 @@ class Graph {
         this.graphMax = 0;
         this.graphScale = 1.0;
         this.currX = 0;
+        //Speicherung der Verschiebung
+        this.translate = 0;
         this.lineMinVal = NaN;
         this.lineMaxVal = NaN;
         this.init(fillArea, yAxis);
@@ -44,8 +46,6 @@ class Graph {
         for (var i = 1; i < this.clientWidth / this.stepWidth; ++i) {
             var x = distancePercent * i;
             this.createLineX(x + "%");
-            //Für die Verschieben. Prozentwert wird für die Ermittlung der Länge bei MovePlot verwendet
-            this.lastDistancePercent = x;
         }
         this.indicatorLine = this.nonTransGrp.appendChild(createLine(0, "100%", this.clientHeight, this.clientHeight));
         this.indicatorLine.classList.add("indicatorLine");
@@ -62,7 +62,6 @@ class Graph {
     onResize() {
         //was in xRichtung gemacht werden muss
         if (this.initialWidth != this.clientWidth) {
-            //Anpassung der Viewbox auf neue Höhe und Breite
             this.stepWidth = this.clientWidth * this.stepWidthRelative;
             this.currX *= this.clientWidth / this.initialWidth;
             this.initialWidth = this.clientWidth;
@@ -109,22 +108,20 @@ class Graph {
     }
 
     movePlot() {
-        if (this.currX > this.clientWidth) {
+        //Die aktuelle Verschiebung (0 wenn keine da ist) wird abgezogen.
+        if (this.currX + this.translate > this.clientWidth) {
             /*  currx
                 ----------------------------------------------
                 clientWidth
                 ----------------------------------------
-                                                --------
-                                    distance  lastDistance (<= distance)
-                result              ------------
-                --------------------
+                distance
+                -----
+                distance * 3
+                ---------------
             */
-            var distance = this.stepWidth / this.clientWidth;
-            var lastDistance = this.lastDistancePercent / 100;
-            var totalDistance = lastDistance - distance;
-            var result = this.clientWidth - this.currX - ((1 - totalDistance) * this.clientWidth);
-
-            this.transgrp.setAttribute("transform", "translate(" + result + ",0)");
+            //Verschiebt um 5 Einheiten.
+            this.translate = this.clientWidth - this.currX - 5 * this.stepWidth;
+            this.transgrp.setAttribute("transform", "translate(" + this.translate + ",0)");
         }
     }
 
@@ -218,7 +215,7 @@ class Graph {
 
         //Umwandlung Koordinatensystem
         var yVal = this.clientHeight - (val * this.graphScale); //Umgewandelter Y-Wert. Zur Bestimmung der Höhe (y-value)
-        if(this.yAxis != null) {
+        if (this.yAxis != null) {
             this.yAxis.selectValue(val);
         }
         //Bereich darf nicht verlassen werden
