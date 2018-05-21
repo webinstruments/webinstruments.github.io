@@ -63,9 +63,11 @@ class Graph {
         //was in xRichtung gemacht werden muss
         if (this.initialWidth != this.clientWidth) {
             this.stepWidth = this.clientWidth * this.stepWidthRelative;
-            this.currX *= this.clientWidth / this.initialWidth;
-            this.initialWidth = this.clientWidth;
+            var factor = this.clientWidth / this.initialWidth;
+            this.currX *= factor;
+            this.translate *= factor;
             this.movePlot();
+            this.initialWidth = this.clientWidth;
         }
         //Was in y Richtung gemacht werden muss
         if (this.initialHeight != this.clientHeight) {
@@ -109,6 +111,7 @@ class Graph {
 
     movePlot() {
         //Die aktuelle Verschiebung (0 wenn keine da ist) wird abgezogen.
+        //Auch wenn gerade onResize aktiv ist, wird verschoben.
         if (this.currX + this.translate > this.clientWidth) {
             /*  currx
                 ----------------------------------------------
@@ -121,8 +124,8 @@ class Graph {
             */
             //Verschiebt um 5 Einheiten.
             this.translate = this.clientWidth - this.currX - 5 * this.stepWidth;
-            this.transgrp.setAttribute("transform", "translate(" + this.translate + ",0)");
         }
+        this.transgrp.setAttribute("transform", "translate(" + this.translate + ",0)");
     }
 
     //Hinzufügen von Elementen, die den Max und Minwert angeben. (Kugeln vielleicht nicht optimal?)
