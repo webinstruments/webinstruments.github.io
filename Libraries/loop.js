@@ -6,6 +6,7 @@ class Loop {
         drawCoordinateCross(this.parent);
         this.initLoop();
         this.setCircleIndicator(0);
+        this.initGradient();
         this.initTextSVG();
         if(texts != null) {
             for(var i in texts) {
@@ -43,7 +44,7 @@ class Loop {
         //Umfang 100, damit radius mit Prozent gleichgesetzt werden kann.
         this.radius = 100 / (2 * Math.PI);
         //Kreis wird mittig gesetzt
-        this.loop = this.loopLayer.appendChild(createCircle(this.radius, "0", "0"));
+        this.loop = this.loopLayer.appendChild(createCircle(this.radius, "50%", "50%"));
         this.loop.setAttributeNS(null, "class", "loop");
         //0%
         this.setDashArray(0);
@@ -59,7 +60,19 @@ class Loop {
         }
         
         var vpHeight = this.radius / (1 - this.strokeWidth / 100) * 2;
-        this.loopLayer.setAttributeNS(null, "viewBox", (-vpHeight / 2) + " " + (-vpHeight / 2) + " " + vpHeight + " " + vpHeight);
+        this.loopLayer.setAttributeNS(null, "viewBox", "0 0 " + vpHeight + " " + vpHeight);
+        //indicatorLayer mit selben Konfigs, aber in der Mitte
+        var indicatorBox = (-vpHeight / 2) + " " + (-vpHeight / 2) + " " + vpHeight + " " + vpHeight;
+        this.indicatorLayer = this.parent.appendChild(createSVG(indicatorBox, "none"));
+    }
+
+    initGradient() {
+        this.gradient = new Gradient(this.loopLayer);
+        var idAbove = this.gradient.addLinearGradient(0, 1, 0, 0, "0", "aboveLeft", "100%", "aboveRight");
+        var idBeneath = this.gradient.addLinearGradient(0, 1, 0, 0, "0", "beneathLeft", "100%", "beneathRight");
+        var idPattern = this.gradient.addPattern("100%", "100%", SVG_PATTERN_PU_USERSPACE);
+        this.gradient.addPatternRects(idPattern, null, null, "100%", "51%", idAbove, null, "50%", "100%", "100%", idBeneath);
+        this.loop.setAttributeNS(null, "style", "stroke:url(#" + idPattern + ")");
     }
 
     update(val) {
@@ -77,14 +90,14 @@ class Loop {
 
     setCircleIndicator(val) {
         if (this.indicatorCircle != null) {
-            this.loopLayer.removeChild(this.indicatorCircle);
+            this.indicatorLayer.removeChild(this.indicatorCircle);
         }
 
         var xy = circlePointsFromPercent(val / 100);
         //Radius des Kreises ist die Hälfte des Rahmens des Hauptkreises
         //Der Einheitskreis wird mit dem Radius des Hauptkreises multipliziert, sodass der Kreis am Beginn der Loop ist.
         var circleRad = (this.strokeWidth / 2) + "%";
-        this.indicatorCircle = this.loopLayer.appendChild(createCircle(circleRad, xy[0] * this.radius, xy[1] * this.radius));
+        this.indicatorCircle = this.indicatorLayer.appendChild(createCircle(circleRad, xy[0] * this.radius, xy[1] * this.radius));
     }
 
     get diameter() {

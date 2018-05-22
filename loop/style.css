@@ -34,3 +34,19 @@ div {
 .invisible {
     display: none;
 }
+
+.aboveLeft {
+	stop-color:yellow;stop-opacity: 1;
+}
+
+.aboveRight {
+	stop-color:red;stop-opacity: 1;
+}
+
+.beneathLeft {
+	stop-color:yellow;stop-opacity: 1;
+}
+
+.beneathRight {
+	stop-color:dodgerblue;stop-opacity: 1;
+}
