@@ -17,24 +17,18 @@ class GradientBar extends Axis {
         //this.values = values;
         this.parent = parent;
         //Erstellung der Definition
-        this.svg_def = parent.appendChild(createElement("defs"));
-        var currId = this.id;
+        this.svg_def = new Gradient(this.parent);
         //Erstellung der LinearGradients mit 3 Stops 1 ist Cursor
-        this.gradient = this.svg_def.appendChild(createLinearGradient(currId, null, null, null, null));
-        this.stop0 = this.gradient.appendChild(createElement("stop"));
-        this.stop0.setAttributeNS(null, "offset", "0");
-        //this.stop0.setAttributeNS(null, "stop-color", "transparent"); Safari unterstützt das nicht
-        this.stop0.setAttributeNS(null, "stop-opacity", "0");
-        this.cursor = this.gradient.appendChild(createElement("stop"));
-        //this.cursor.setAttributeNS(null, "stop-color", "yellow");
-        this.cursor.setAttributeNS(null, "class", CONST_GB_CURSOR_STOP_CLASS);
-        this.stop2 = this.gradient.appendChild(createElement("stop"));
-        this.stop2.setAttributeNS(null, "offset", "100%");
-        //this.stop2.setAttributeNS(null, "stop-color", "transparent"); Comp Safari
-        this.stop2.setAttributeNS(null, "stop-opacity", "0");
-        //Rechteck fuer die Anzeige erstellen
+        //Index 0 und 1 ist Hintergrund
+        var idGradient = this.svg_def.addLinearGradient(null, null, null, null,
+            "0", "stop0", "0", CONST_GB_CURSOR_STOP_CLASS, "100", "stop2");
+        this.gradient = this.svg_def.elementById(idGradient).gradient;
+        this.cursor = this.svg_def.elementById(idGradient).children[1];
+        //ausblenden der 2 Elmente bis auf Cursor
+        this.svg_def.elementById(idGradient).children[0].setAttributeNS(null, "style", "stop-opacity:0;");
+        this.svg_def.elementById(idGradient).children[2].setAttributeNS(null, "style", "stop-opacity:0;");
         this.background = this.parent.appendChild(createRect(0, 0, "100%", "100%"));
-        this.background.setAttributeNS(null, "style", "fill:url(#" + currId + ")");
+        this.background.setAttributeNS(null, "style", "fill:url(#" + idGradient + ")");
         this.line = new Line(parent);
         this.line.addClass(CONST_GB_CURSOR_LINE_CLASS);
         //Darstellung der Zahlen auf der Achse
@@ -68,7 +62,7 @@ class GradientBar extends Axis {
 
     remove() {
         //eigene Kinder entfernen, sonst sieht man die Artefakte (Line ist sichtbar)
-        this.parent.removeChild(this.svg_def);
+        this.svg_def.remove();
         this.parent.removeChild(this.background);
         this.line.remove();
         super.remove();
@@ -99,14 +93,6 @@ class GradientBar extends Axis {
         val = val + "%";
         this.cursor.setAttributeNS(null, "offset", val);
         this.line.move(val);
-    }
-
-    get id() {
-        var id = "lg0";
-        for (var i = 1; document.getElementById(id) != null; ++i) {
-            id = "lg" + i;
-        }
-        return id;
     }
 
     get alignment() {

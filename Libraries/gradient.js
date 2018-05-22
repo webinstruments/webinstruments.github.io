@@ -38,6 +38,10 @@ class Gradient {
         return this.children.find(ele => ele.id == id);
     } 
 
+    remove() {
+        this.parent.removeChild(this.def);
+    }
+
     id(id) {
         var newId = id + "0";
         for (var i = 1; document.getElementById(newId) != null; ++i) {
