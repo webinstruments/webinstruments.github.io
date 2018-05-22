@@ -67,10 +67,18 @@ function drawCoordinateCross(parent) {
 
 function createRect(x, y, w, h) {
     var rect = document.createElementNS(SVGNS, "rect");
-    rect.setAttributeNS(null, "x", x);
-    rect.setAttributeNS(null, "y", y);
-    rect.setAttributeNS(null, "width", w);
-    rect.setAttributeNS(null, "height", h);
+    if(x != null) {
+        rect.setAttributeNS(null, "x", x);
+    }
+    if(y != null) {
+        rect.setAttributeNS(null, "y", y);
+    }
+    if(w != null) {
+        rect.setAttributeNS(null, "width", w);
+    }
+    if(h != null) {
+        rect.setAttributeNS(null, "height", h);
+    }
     rect.setAttributeNS(null, "class", "rect");
 
     return rect;
