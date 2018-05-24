@@ -14,6 +14,7 @@ class Line {
         } else {
             this.horizontalAlign();
         }
+        this.move(position);
     }
 
     move(val) {

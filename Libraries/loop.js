@@ -1,6 +1,6 @@
 var CONST_LOOP_INVIS_CLASS = "invisible";
 class Loop {
-    constructor(parent, texts) {
+    constructor(parent, ...texts) {
         this.parent = parent;
         //Debugmodus
         drawCoordinateCross(this.parent);
