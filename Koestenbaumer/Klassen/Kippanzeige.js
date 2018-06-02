@@ -66,11 +66,11 @@ attributeChangedCallback(name, oldValue, newValue) {
 		
 
 		//DefaultWert schreiben --> Leer
-		ctx.font = "Bold 250px Calibri";
+		ctx.font = "180px Times New Roman";
 		ctx.fillStyle=getCol(this,2,"#FFFFFF");
 		//var outText =oldValue;
 		//if(outText==undefined) outText = " ";
-		//ctx.fillText(outText, this.canvas.width*1/2-ctx.measureText(outText).width/2, this.canvas.height/2+82);
+		//ctx.fillText(outText, this.canvas.width*1/2-ctx.measureText(outText).width/2, this.canvas.height/2+63);
 		
 		//Zeichnen der Scharniere
 		
@@ -104,10 +104,10 @@ attributeChangedCallback(name, oldValue, newValue) {
       
 
      		//Schreiben der Zeichen
-		ctx.font = "Bold 250px Calibri";
+		ctx.font = "180px Times New Roman";
 		ctx.fillStyle=getCol(this,2,"#FFFFFF");
 		var outText =newValue;
-		ctx.fillText(newValue, this.canvas.width*1/2-ctx.measureText(newValue).width/2, this.canvas.height/2+82);
+		ctx.fillText(newValue, this.canvas.width*1/2-ctx.measureText(newValue).width/2, this.canvas.height/2+63);
 	
 		ctx.beginPath();	
 		ctx.lineWidth=8;

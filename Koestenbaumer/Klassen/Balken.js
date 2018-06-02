@@ -61,7 +61,12 @@ class Balken extends HTMLElement {
 		}else{
 			this.defaultVal=this.toVal/2;
 		}
-		
+		//Parameter "MYVALUEFROM" übergeben? sonst Defaultwert
+		if(paramExist(this,"myvaluefrom")){
+			this.defaultValFrom=this.attributes.myvaluefrom.value;
+		}else{
+			this.defaultValFrom=0;
+		}
 		
 		
 		
@@ -82,7 +87,7 @@ class Balken extends HTMLElement {
 	}
 	//Variablen, die bei Änderung überwacht werden
 	static get observedAttributes() {
-		return ['clientWidth', 'myvalue'];
+		return ['myvaluefrom', 'myvalue'];
 	}
 	
 	//Methode wird aufgerufen, wenn sich eine Überwachende Variable ändert
@@ -90,6 +95,14 @@ class Balken extends HTMLElement {
 		
 		//Context in Variable speichern
 		var ctx = this.canvas.getContext("2d");
+
+		if(name=="myvalue"){
+			this.defaultVal = newValue;
+		}else{
+			this.defaultValFrom = newValue;
+		}
+
+
 		
 		//this.canvas.setAttribute('class', 'wi co');
 		
@@ -102,7 +115,12 @@ class Balken extends HTMLElement {
 		ctx.strokeRect(this.drawWidth/4,this.drawHeight-this.drawHeight*3/4,this.drawWidth/2,this.drawHeight*3/4);
 		//Farbe Füllung
 		ctx.fillStyle=getCol(this,1,"#FF0033");
-		ctx.fillRect(this.drawWidth/4+parseInt(ctx.lineWidth)/2,this.drawHeight-parseInt((newValue-this.fromVal)/(parseInt(this.toVal)-parseInt(this.fromVal))*this.drawHeight*3/4),this.drawWidth/2-parseInt(ctx.lineWidth),parseInt((newValue-this.fromVal)/(parseInt(this.toVal)-parseInt(this.fromVal))*this.drawHeight*3/4));
+
+		//Zweiten Wert setzen (VonWert)
+		var offSet = parseInt(this.defaultValFrom);
+
+		var temp = parseInt((this.defaultVal-offSet-this.fromVal)/(parseInt(this.toVal)-parseInt(this.fromVal))*this.drawHeight*3/4);
+		ctx.fillRect(this.drawWidth/4+parseInt(ctx.lineWidth)/2,this.drawHeight-parseInt((this.defaultVal-this.fromVal)/(parseInt(this.toVal)-parseInt(this.fromVal))*this.drawHeight*3/4),this.drawWidth/2-parseInt(ctx.lineWidth),temp);
 		ctx.lineWidth=10;
 		
 		//Dicke Linien und Beschriftung zeichnen
