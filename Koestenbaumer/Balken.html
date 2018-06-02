@@ -9,16 +9,16 @@
 <body height="100vh" width="100vw">
 <div id="cont">
 <div id="container1">
-<c-balken myvalue=100 id="myBalken1" from=0 to=100 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
+<c-balken myvalue=75 myvaluefrom=25 id="myBalken1" from=0 to=100 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
 </div>
 <div id="container2">
-<c-balken myvalue=100 id="myBalken2" from=50 to=1000 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
+<c-balken myvalue=525 id="myBalken2" from=50 to=1000 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
 </div>
 <div id="container1">
-<c-balken myvalue=100 id="myBalken3" from=100 to=200 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
+<c-balken myvalue=150 id="myBalken3" from=100 to=200 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
 </div>
 <div id="container2">
-<c-balken myvalue=100 id="myBalken4" from=150 to=250 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
+<c-balken myvalue=200 id="myBalken4" from=150 to=250 col1="#000000" col2="#FF0000" col3="#0000FF"></c-balken>
 </div>
 </div>
 <button onClick="randVal();">Random</button>
@@ -30,8 +30,12 @@
 
 <script>
 function randVal(){
-	document.getElementById("myBalken1").setAttribute('myvalue',parseInt((Math.random()*100)+1));
-	document.getElementById("myBalken2").setAttribute('myvalue',parseInt((Math.random()*100)+51));
+	var rand = parseInt((Math.random()*95)+1);
+	document.getElementById("myBalken1").setAttribute('myvalue',rand+3);
+	document.getElementById("myBalken1").setAttribute('myvalueFrom',rand-3);
+	var rand2 = parseInt((Math.random()*930)+51);
+	document.getElementById("myBalken2").setAttribute('myvalue',rand2+3);
+	document.getElementById("myBalken2").setAttribute('myvalueFrom',rand2-3);
 	document.getElementById("myBalken3").setAttribute('myvalue',parseInt((Math.random()*100)+101));
 	document.getElementById("myBalken4").setAttribute('myvalue',parseInt((Math.random()*100)+151));
 	}
