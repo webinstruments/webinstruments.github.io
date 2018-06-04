@@ -27,7 +27,7 @@ class KippAnzeige extends HTMLElement {
 
 	// Klassen und Style hinzufügen
 	//canvas.setAttribute('class', 'wi');
-	this.canvas.style = "border:1px solid #000000";
+	//this.canvas.style = "border:1px solid #000000";
 	this.canvas.classList.add("wi");
 	//this.setAttribute('class',  this.attributes.class.value);
 
