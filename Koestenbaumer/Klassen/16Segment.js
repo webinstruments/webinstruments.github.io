@@ -11,7 +11,7 @@
 //	<c-banzeige id="my16Segment"></c-banzeige>
 // 	<c-banzeige id="my16Segment" myValue="T" col1="#000000" col2="#00FF00"></c-banzeige>
 
-// Übersicht Segmente	
+// Ãœbersicht Segmente	
 //	
 //	---a1a1a1-a2a2a2---
 //	---f-h---i---j-b---
@@ -32,26 +32,26 @@ class BAnzeige extends HTMLElement {
 	//Canvas-element erstellen
     	this.canvas = document.createElement("canvas");
 
-	//Default Höhe und Breite für Canvas-Element
+	//Default HÃ¶he und Breite fÃ¼r Canvas-Element
 	this.canvas.width  = 500;
 	this.canvas.height = 500;
 
- 	// Klassen und Style hinzufügen
+ 	// Klassen und Style hinzufÃ¼gen
 	this.canvas.classList.add("wi");
-	this.canvas.style = "border:1px solid #000000";
+	//this.canvas.style = "border:1px solid #000000";
 
-	//Dem 16-Segment-Anzeige Element das Canvas Element hinzufügen
+	//Dem 16-Segment-Anzeige Element das Canvas Element hinzufÃ¼gen
     	this.appendChild(this.canvas);
 
 	//Context zum Zeichen im Canvas Objekt
      	var ctx = this.canvas.getContext("2d");
 
-	//löschen der Zeichenfläche
+	//lÃ¶schen der ZeichenflÃ¤che
  	ctx.strokeRect(this.canvas.width,this.canvas.height-this.canvas.height,this.canvas.width,this.canvas.height);
 	ctx.fillRect(this.canvas.width,this.canvas.height,this.canvas.width,this.canvas.height);
 	ctx.fillStyle="#00FF00";
 
-	//Default Zeichnung ausführen, stellt "8" dar
+	//Default Zeichnung ausfÃ¼hren, stellt "8" dar
 		this.drawA1();
 		this.drawA2();
 		this.drawF();
@@ -64,21 +64,21 @@ class BAnzeige extends HTMLElement {
 		this.drawC();
 	
 }
-// Variablen, welche auf Änderungen beobachtet werden
+// Variablen, welche auf Ã„nderungen beobachtet werden
  static get observedAttributes() {
     return ['myvalue'];
   }
 
-// Methode wird aufgerufen, wenn Änderungn an Variable erkannt wird
+// Methode wird aufgerufen, wenn Ã„nderungn an Variable erkannt wird
  attributeChangedCallback(name, oldValue, newValue) {
 
-	//Löschen der Zeichnung
+	//LÃ¶schen der Zeichnung
 	this.drawClean();
 
 	//Context zum Zeichen im Canvas Objekt
 	var ctx = this.canvas.getContext("2d");
 
-	//Abfrage des Inputs || Zahlen von 0-9; Buchstaben groß und klein geschrieben; Leerzeichen
+	//Abfrage des Inputs || Zahlen von 0-9; Buchstaben groÃŸ und klein geschrieben; Leerzeichen
 	switch(newValue){
 	case "0":
 		this.drawA1();
