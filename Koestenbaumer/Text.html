@@ -1,0 +1,86 @@
+<html>
+    <head>
+<title>Titel</title>
+ 	<meta charset='utf-8' /> 
+ 
+<script src="webcomponents-lite.js" type="text/javascript"></script>
+	<style>
+		.openC {
+			width: 20%;
+			height: 20%;
+			background-Color: red;
+		}
+		.wi {
+		
+		width:6%;
+		
+		
+		}
+
+        canvas {
+           
+           
+         
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+           
+        }
+		.c-balken{
+		
+		}
+		#ctxid{
+		
+		}
+		.co {
+		
+		}
+		c-anzeige#hh1{
+			background-Color: blue;
+			width: 20%;
+			height: 20%;
+		}
+	</style>
+    </head>
+<body height="100vh" width="100vw">
+
+<br><br>
+<input type="text" id="text">
+<button onClick="createArray1(document.getElementById('text').value);">Segment</button>
+<button onClick="createArray2(document.getElementById('text').value);">Kipp</button>
+</body>
+
+<script type="text/javascript" src="JS/Funktionen"></script>
+<script type="text/javascript" src="Klassen/Kippanzeige.js"></script>
+<script type="text/javascript" src="Klassen/16Segment.js"></script>
+
+
+<script>
+function createArray1(text){
+	var len = text.length;
+	var myDiv = document.createElement('div');
+	var i;
+	var str ="";
+	for(i = 0;i<len;i++){
+	str =str + '<c-kanzeige id="kippAn" myValue="'+ text.charAt(i) +'" col1="#555555" col2="#FFFFFF" col3="#000000"  ></c-kanzeige>';
+
+	}
+	myDiv.innerHTML = str;
+	document.getElementsByTagName("BODY")[0].appendChild(myDiv);
+}
+function createArray2(text){
+	var len = text.length;
+	var myDiv = document.createElement('div');
+	var i;
+	var str ="";
+	for(i = 0;i<len;i++){
+	str =str + '<c-banzeige myValue="'+ text.charAt(i) +'" id="hh1"></c-banzeige>';
+
+	}
+	myDiv.innerHTML = str;
+	document.getElementsByTagName("BODY")[0].appendChild(myDiv);
+}
+
+</script>
+</html>
