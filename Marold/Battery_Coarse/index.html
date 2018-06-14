@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Battery</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="main.css" />-->
+</head>
+
+<body>
+    <h2>Battery</h2>
+    <br>
+    <div id="canvas">
+        <canvas id="battery">battery</canvas>
+    </div>
+    <div class="slider">
+        <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+    <div id='value'></div>
+    <script src="battery.js"></script>
+    <script>
+        window.onload = function () {
+            console.log('function: onload()');
+            draw_battery('battery', 250, 61);
+        }
+
+        let slider = document.getElementById("myRange");
+        let wert = document.getElementById("value");
+
+        slider.oninput = function () {
+            draw_battery('battery', 250, this.value);
+            wert.innerHTML = slider.value;
+        }
+    </script>
+</body>
+
+</html>

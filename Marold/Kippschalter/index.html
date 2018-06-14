@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Canvas Toggle Switch Matthias Marold</title>
+    <!--<link rel="stylesheet" type="text/css" media="screen" href="main.css" />-->
+</head>
+
+<body>
+    Canvas Toggle Switch
+    <br>
+    <div id="canvas">
+        <canvas id="switch_1">switch_1</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_2">switch_2</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_3">switch_3</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_4">switch_4</canvas>
+        <!--  onload="draw_switch" -->
+    </div>
+    <!--<div>
+        <button type="button" onclick="draw_switch('switch_1',70,'green')">Toggle Switch</button>
+    </div>-->
+
+    <div>
+        <canvas id="switch_5">switch_5</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_6">switch_6</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_7">switch_7</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_8">switch_8</canvas>
+    </div>
+    <div id="state"></div>
+    <script src="script.js"></script>
+    <script>
+        window.onload = function () {
+            console.log('function: onload()');
+            draw_switch('switch_1', 50, true, 'green');
+            draw_switch('switch_2', 50, false, 'green');
+            draw_switch('switch_3', 50, true, 'green');
+            draw_switch('switch_4', 50, false, 'green');
+            draw_switch('switch_5', 50, false, 'green');
+            draw_switch('switch_6', 70, true, 'green');
+            draw_switch('switch_7', 90, false, 'green');
+            draw_switch('switch_8', 110, true, 'green');
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Toggle Switch (node.js an socket.io)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>-->
+</head>
+
+<body>
+    <h2>Canvas Toggle Switch (node.js and socket.io websocket)</h2>
+    <br>
+    <div id="canvas">
+        <canvas id="switch_1">switch_1</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_2">switch_2</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_3">switch_3</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_4">switch_4</canvas>
+        <!--  onload="draw_switch" -->
+    </div>
+    <!--<div>
+    <button type="button" onclick="draw_switch('switch_1',70,'green')">Toggle Switch</button>
+</div>-->
+
+    <div>
+        <canvas id="switch_5">switch_5</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_6">switch_6</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_7">switch_7</canvas>
+        <!--  onload="draw_switch" -->
+        <canvas id="switch_8">switch_8</canvas>
+    </div>
+    <div id="state"></div>
+
+    <script src="script.js" type="text/javascript"></script>
+    <script src="./socket.io/socket.io.js" type="text/javascript"></script>
+
+    <script>
+
+        var socket = io.connect('http://localhost:8080/');
+
+        socket.on('announcements', function (data) {
+            console.log('Got announcement:', data.message);
+        });
+
+        socket.on('ws1', function (data) {
+            console.log('ws1:', data.message);
+            draw_switch('switch_1', 70, data.message, 'green');
+        });
+
+        socket.on('ws2', function (data) {
+            console.log('ws2:', data.message);
+            draw_switch('switch_2', 70, data.message, 'green');
+        });
+
+
+        socket.on('ws3', function (data) {
+            console.log('ws3:', data.message);
+            draw_switch('switch_3', 70, data.message, 'green');
+        });
+
+        socket.on('ws4', function (data) {
+            console.log('ws4:', data.message);
+            draw_switch('switch_4', 70, data.message, 'green');
+        });
+
+        socket.on('ws5', function (data) {
+            console.log('ws5:', data.message);
+            draw_switch('switch_5', 70, data.message, 'green');
+        });
+
+        socket.on('ws6', function (data) {
+            console.log('ws6:', data.message);
+            draw_switch('switch_6', 70, data.message, 'green');
+        });
+
+        socket.on('ws7', function (data) {
+            console.log('ws7:', data.message);
+            draw_switch('switch_7', 70, data.message, 'green');
+        });
+
+        socket.on('ws8', function (data) {
+            console.log('ws8:', data.message);
+            draw_switch('switch_8', 70, data.message, 'green');
+        });
+
+        window.onload = function () {
+            console.log('function: onload()');
+            draw_switch('switch_1', 70, true, 'green');
+            draw_switch('switch_2', 70, false, 'green');
+            draw_switch('switch_3', 70, true, 'green');
+            draw_switch('switch_4', 70, false, 'green');
+            draw_switch('switch_5', 70, false, 'green');
+            draw_switch('switch_6', 70, false, 'green');
+            draw_switch('switch_7', 70, false, 'green');
+            draw_switch('switch_8', 70, false, 'green');
+        }
+    </script>
+</body>
+
+</html>
