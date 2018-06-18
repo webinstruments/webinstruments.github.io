@@ -6,7 +6,9 @@
 //	col2 - Farbe der Beschriftung (Zahlen) z.B.: "#FF00FF"
 //	col3 - Farbe der Umrandungen (Äußerer Kreis, innerer Kreis, Mittelpunkt) z.B.: "#FF00FF"
 //	col4 - Farbe der Zeiger z.B.: "#FF00FF"
-//
+//	sec  - Wert für den Sekundenzeiger
+//	min  - Wert für den Minutenzeiger
+//	hour - Wert für den Stundenzeiger
 
 // Einbindung Bsp:
 //
@@ -25,26 +27,31 @@ class Uhr extends HTMLElement {
 	//Default Höhe und Breite für Canvas-Element
 	this.canvas.height = 500;
 	this.canvas.width = 500;
-	
+
 	// Klassen und Style hinzufügen
 	this.canvas.classList.add("wi");
-	this.canvas.style = "border:1px solid #000000";
+	//this.canvas.style = "border:1px solid #000000";
 	
 	//Deklarieren der Variablen
 	var defaultSec = 0 ;
 	var defaultMin = 0;
 	var defaultHour = 0;
-	
-	//Default-Werte setzen
-	this.setValue("sec",this.defaultSec);
-	this.setValue("min",this.defaultMin);
-	this.setValue("hour",this.defaultHour);
+		var ctx = this.canvas.getContext("2d");
+	ctx.scale(0.97,0.97);
+	ctx.translate(8,8);
 
 	//Dem Uhr Element das Canvas Element hinzufügen
     	this.appendChild(this.canvas);
  	
 	//Init-Methode
 	this.setStart();
+	this.setLines();
+	//Alle Variablen der Uhr setzen
+	this.setValue("sec",this.defaultSec);
+	this.setValue("min",this.defaultMin);
+	this.setValue("hour",this.defaultHour);
+
+
 }
 
 // Variablen, welche auf Änderungen beobachtet werden

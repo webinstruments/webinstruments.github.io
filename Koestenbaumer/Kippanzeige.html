@@ -9,7 +9,7 @@
 <body height="100vh" width="100vw">
 <div id="cont">
 <div id="container1">
-<c-kanzeige id="myKipp1" myvalue="0" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+<c-kanzeige id="myKipp1" myvalue=" " col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
 </div>
 <div id="container2">
 <c-kanzeige id="myKipp2" myvalue="0" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
@@ -28,10 +28,10 @@
 <script type="text/javascript" src="Klassen/Kippanzeige.js"></script>
 <script>
 function randVal(){
-	document.getElementById("myKipp1").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+65)));
-	document.getElementById("myKipp2").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+65)));
-	document.getElementById("myKipp3").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+65)));
-	document.getElementById("myKipp4").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+65)));
+	document.getElementById("myKipp1").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("myKipp2").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("myKipp3").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("myKipp4").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
 	}
 </script>
 </html>

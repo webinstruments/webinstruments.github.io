@@ -2,9 +2,10 @@
 
 // Parameter
 //	col1 - Farbe des Hintergundes z.B.: "#00FF00"
-//	col1 - Farbe der Segmente z.B.: "#0000FF"	
-//	myValue - Startwert der 7-Segment-Anzeige z.B.: "7" || Wenn nicht gesetzt ist der Startwert "8"
-
+//	col2 - Farbe der Segmente z.B.: "#0000FF"	
+//	myvalue - Startwert der 7-Segment-Anzeige z.B.: "7" || Wenn nicht gesetzt ist der Startwert "8"
+//	colon - Stellt einen Doppelpunkt hinter dem Wert dar z.B.: true || Wenn nicht gesetzt ist der Defaultwert "false"
+//	point - Stellt einen Punkt hinter dem Wert dar z.B.: true || Wenn nicht gesetzt ist der Defaultwert "false"
 
 // Einbindung Bsp:
 //
@@ -48,6 +49,19 @@ class Anzeige extends HTMLElement {
 	// Klassen und Style hinzufügen
 	this.canvas.classList.add("wi");
 	this.canvas.style = "border:1px solid #000000";
+
+	//Parameter "COLON" übergeben? sonst Defaultwert
+		if(paramExist(this,"colon")){
+			this.colon=this.attributes.colon.value;
+		}else{
+			this.colon=false;
+		}
+	//Parameter "POINT" übergeben? sonst Defaultwert
+		if(paramExist(this,"point")){
+			this.point=this.attributes.point.value;
+		}else{
+			this.point=false;
+		}
 
 	//Context zum Zeichen im Canvas Objekt
      	var ctx = this.canvas.getContext("2d");
@@ -177,6 +191,15 @@ class Anzeige extends HTMLElement {
 	
 	}
 	
+	// Wenn doppeltpunkt erwünscht ist, wird er gezeichnet 
+	if(this.colon=="true"){
+		this.drawColon();
+	}
+	// Wenn Punkt erwünscht ist, wird er gezeichnet 
+	if(this.point=="true"){
+		this.drawPoint();
+	}
+	
 }
 	drawClean(){
 		//Löschen der Zeichenfläche
@@ -217,6 +240,54 @@ class Anzeige extends HTMLElement {
 		var colHex = hexToRgb(getCol(this,2,"#00FF00"));		
 		ctx.fillStyle= rgbToHexDark(colHex);
 		ctx.fillRect(this.canvas.width/3+this.canvas.width/36+this.canvas.width*1/108,this.canvas.height*34/72+this.canvas.height/96,this.canvas.width/6*2-this.canvas.width*2/108,this.canvas.height/18-this.canvas.height*2/96); //mitte
+	}
+
+	drawColon(){
+		//Doppelpunkt zeichnen
+
+		//Context zum Zeichen im Canvas Objekt
+		var ctx = this.canvas.getContext("2d");
+
+		//Hintergrundfarbe von Parameter "col2"
+		ctx.fillStyle=getCol(this,2,"#00FF00"); //"#00FF00";
+		//oberer Punkt
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*1/3,20,0,2*Math.PI,);
+		ctx.fill();
+		//Unterer Punkt
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*2/3,20,0,2*Math.PI,);
+		ctx.fill();
+		//innere Teil des Segments aufgrund Farbe dunkler gestalten
+		var colHex = hexToRgb(getCol(this,2,"#00FF00"));		
+		ctx.fillStyle= rgbToHexDark(colHex);
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*1/3,15,0,2*Math.PI,);
+		ctx.fill();
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*2/3,15,0,2*Math.PI,);
+		ctx.fill();
+	}
+
+	drawPoint(){
+		//Punkt zeichnen
+
+		//Context zum Zeichen im Canvas Objekt
+		var ctx = this.canvas.getContext("2d");
+
+		//Hintergrundfarbe von Parameter "col2"
+		ctx.fillStyle=getCol(this,2,"#00FF00"); //"#00FF00";
+		//Punkt zeichnen
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*4/5,20,0,2*Math.PI,);
+		ctx.fill();
+		
+		//innere Teil des Segments aufgrund Farbe dunkler gestalten
+		var colHex = hexToRgb(getCol(this,2,"#00FF00"));		
+		ctx.fillStyle= rgbToHexDark(colHex);
+		ctx.beginPath();
+		ctx.arc(this.canvas.width*5/6+this.canvas.width/36,this.canvas.height*4/5,15,0,2*Math.PI,);
+		ctx.fill();
 	}
 	drawBottom(){
 		//Unteres Segment

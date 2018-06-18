@@ -2,12 +2,15 @@
 
 //Parameter
 //
-//	col1 	- Farbe des Füllung z.B.: "#FF00FF"
+//	col1 	- Farbe der Füllung z.B.: "#FF00FF"
 //	col2 	- Farbe der Beschriftung (Zahlen) z.B.: "#FF00FF"
 //	col3 	- Farbe der Umrisse/Linien z.B.: "#FF00FF"
 //	from 	- Parameter, von wo der Balken anzeigen beginnt || Wenn Parameter nicht gesetzt, ist der Wert "0"
 //	to   	- Parameter, bis wohin der Balken anzeigt	|| Wenn der Parameter nicht gesetzt, ist der Wert "100"
-//	myValue - Startwert des Balkens 			|| Wenn Parameter nicht gesetzt, ist der Wert "to"/2
+//	myvalue - Dieser Wert wird als Initalwert des Balkens hergenommen. Der Balken wird bis zu diesem Wert gefüllt. || Wenn Parameter nicht gesetzt, ist der Wert "to"/2
+//	myvaluefrom - Dieser Wert wird als Initalwert des Balkens hergenommen. Wenn dieser Wert gesetzt und ungleich null ist, wird der Balken von diesem Wert bis zum Wert „myvalue“ gefüllt. || Wenn Parameter nicht gesetzt, ist der Wert 0
+
+
 
 //Einbindung Bsp.:
 //

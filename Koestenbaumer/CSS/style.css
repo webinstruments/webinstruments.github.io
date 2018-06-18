@@ -11,6 +11,14 @@ body {
 			
 			
 		}
+		#cont2{
+			width:90%;
+			height:90%;
+			    display: block;
+    margin-left: auto;
+    margin-right: auto;
+			
+		}
 		#container1{
 			width:45%;
 			height:45%;

@@ -1,0 +1,26 @@
+body {
+	
+}
+
+		canvas {
+			
+			width:100%;
+			height:100%;
+		}
+		#cont{
+			
+			
+		}
+		#container1{
+			width:20%;
+			height:20%;
+			float:left;
+			
+		}
+		#container2{
+			float:left;
+			width:20%;
+			height:20%;
+		}
+
+

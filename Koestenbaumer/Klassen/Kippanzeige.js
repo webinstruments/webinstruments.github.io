@@ -40,7 +40,7 @@ class KippAnzeige extends HTMLElement {
 
 	//Canvas der Kippanzeige übergeben
     	this.appendChild(this.canvas);
-		
+	this.drawKipp(this.defaultVal);	
 	}
 
 //Variablen, die bei Änderung überwacht werden
@@ -49,11 +49,20 @@ class KippAnzeige extends HTMLElement {
   }
 //Methode wird aufgerufen, wenn sich eine Überwachende Variable ändert
 attributeChangedCallback(name, oldValue, newValue) {
-	if(oldValue==null) oldValue = " ";
+	if(oldValue==null) oldValue = "11";
 	if(oldValue!=newValue){
 
 	
-		var ctx = this.canvas.getContext("2d");
+		this.drawKipp(newValue);
+      
+
+	}	
+
+}
+
+drawKipp(newValue){
+
+var ctx = this.canvas.getContext("2d");
 
 		ctx.beginPath();
 		ctx.fillStyle=getCol(this,1,"#999999");
@@ -68,12 +77,8 @@ attributeChangedCallback(name, oldValue, newValue) {
 		//DefaultWert schreiben --> Leer
 		ctx.font = "180px Times New Roman";
 		ctx.fillStyle=getCol(this,2,"#FFFFFF");
-		//var outText =oldValue;
-		//if(outText==undefined) outText = " ";
-		//ctx.fillText(outText, this.canvas.width*1/2-ctx.measureText(outText).width/2, this.canvas.height/2+63);
 		
 		//Zeichnen der Scharniere
-		
 		ctx.lineWidth=4;
 		roundRect(ctx, this.canvas.width*1/9+this.canvas.width*1/24-2,this.canvas.height/2-this.canvas.height*1/16,this.canvas.width*1/12,this.canvas.height*1/8,10);
 		roundRect(ctx, this.canvas.width*8/9-this.canvas.width*1/12-8,this.canvas.height/2-this.canvas.height*1/16,this.canvas.width*1/12,this.canvas.height*1/8,10);
@@ -87,21 +92,6 @@ attributeChangedCallback(name, oldValue, newValue) {
 		ctx.lineTo(this.canvas.width*8/9-this.canvas.width*3/24+1,this.canvas.height/2);
 		ctx.stroke();		
 		var that = this;
-		//setTimeout(function(){that.flip(1,newValue,0);},1);
-			
-			
-		 
-		
-
-		//ctx.lineWidth=10;
-		//ctx.fillStyle=getCol(this,2,"#000000");
-		
-
-
-		//ctx.lineWidth=5;
-		
-		//var numLines = 20;
-      
 
      		//Schreiben der Zeichen
 		ctx.font = "180px Times New Roman";
@@ -114,9 +104,6 @@ attributeChangedCallback(name, oldValue, newValue) {
 		ctx.moveTo(this.canvas.width*1/9+this.canvas.width*3/24, this.canvas.height/2);
 		ctx.lineTo(this.canvas.width*8/9-this.canvas.width*3/24+1,this.canvas.height/2);
 		ctx.stroke();
-      
-
-	}	
 
 }
 

@@ -15,7 +15,7 @@ class Ampel extends HTMLElement {
   constructor() {
 	super();
 	this.canvas = document.createElement("canvas");
-	this.canvas.style = "border:1px solid #000000";
+	//this.canvas.style = "border:1px solid #000000";
 	
 	//Default Höhe und Breite für Canvas-Element
 	this.canvas.height = 500;
@@ -44,7 +44,7 @@ class Ampel extends HTMLElement {
  	ctx.strokeRect(this.canvas.width/3,this.canvas.height-this.canvas.height*7/8,this.canvas.width/3,this.canvas.height*6/8);
 	ctx.fillRect(this.canvas.width/3,this.canvas.height-this.canvas.height*7/8,this.canvas.width/3,this.canvas.height*6/8);
 	ctx.fillRect(this.canvas.width/2-this.canvas.width/9/2,this.canvas.height-this.canvas.height*1/8,this.canvas.width/9,this.canvas.height*1/8);
-	
+	this.setGray();
 	
 }
 

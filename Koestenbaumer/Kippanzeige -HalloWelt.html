@@ -1,0 +1,59 @@
+<html>
+    <head>
+<title>Titel</title>
+ 	<meta charset='utf-8' /> 
+ <link rel="stylesheet" type="text/css" href="CSS/style16s.css" />
+<script src="JS/webcomponents-lite.js" type="text/javascript"></script>
+	
+    </head>
+<body height="100vh" width="100vw">
+<div id="cont">
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="!" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue=" " col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="$" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="%" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="&" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="/" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="(" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue=")" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="=" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp1" myvalue="?" col1="#999999" col2="#FFFFFF" col3="#000000" ></c-kanzeige>
+</div>
+<div id="container1">
+	<c-kanzeige id="myKipp2"></c-kanzeige>
+</div>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<button onClick="randVal();">Random</button>
+
+</body>
+<script type="text/javascript" src="JS/Funktionen.js"></script>
+<script type="text/javascript" src="Klassen/Kippanzeige.js"></script>
+<script>
+function randVal(){
+	document.getElementById("mySegm1").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("mySegm2").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("mySegm3").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	document.getElementById("mySegm4").setAttribute('myvalue',String.fromCharCode(parseInt((Math.random()*26)+64)));
+	}
+</script>
+</html>

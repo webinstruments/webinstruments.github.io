@@ -28,7 +28,7 @@ class Tacho extends HTMLElement {
 
 	// Klassen und Style hinzufügen
 	this.canvas.classList.add("wi");
-	this.canvas.style = "border:1px solid #000000";
+	//this.canvas.style = "border:1px solid #000000";
 
 	//Setzen der Werte
 
@@ -75,7 +75,7 @@ class Tacho extends HTMLElement {
 
 	//Defaultwert setzen
 	this.setValue(this.defaultVal);
-
+	this.setLines();	
 	
 }
 
@@ -209,6 +209,7 @@ class Tacho extends HTMLElement {
 		ctx.fillStyle=getCol(this,4,"#000000");
 		ctx.moveTo(this.canvas.width/2,this.canvas.height-this.canvas.height*4/8)
 		ctx.arc(this.canvas.width/2,this.canvas.height-this.canvas.height*4/8,this.canvas.height*3/8,(Math.PI*7/8+1.25*Math.PI*((newValue/this.toVal)-1/64)),(Math.PI*7/8+1.25*Math.PI*((newValue/this.toVal)+1/64))); //Nadel
+		//ctx.arc(this.canvas.width/2,this.canvas.height-this.canvas.height*4/8,this.canvas.height*3/8,(Math.PI*7/8+1.25*Math.PI*(parseInt((newValue-this.fromVal)/(parseInt(this.toVal)-parseInt(newValue))-1/64))),(Math.PI*7/8+1.25*Math.PI*(((parseInt((newValue-this.fromVal)/(parseInt(this.toVal)-parseInt(newValue))-1/64))))+1/64)); //Nadel
 		ctx.fill();
 
 		//Mittelpunkt über den Zeiger in die Mitte zeichnen
