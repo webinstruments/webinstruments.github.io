@@ -86,8 +86,8 @@ class GradientBar extends Axis {
         offset = Math.abs(offset - maxPercent);
         if(this.checkFirstValue) {
             //Zusätzlicher offset: Wie weit ist der erste Wert von 0 entfernt.
-            var distanceToFirstValue = parseFloat(this.sorted[0].textContent) * parseFloat(this.sorted[0].textWidthAttribute) / 100;
-            offset -= distanceToFirstValue + parseFloat(this.padding) / 100;
+            var valueDistribution = 1 / this.values.length;
+            offset -= valueDistribution; //- parseFloat(this.padding) / 200;
             if(offset < 0) {
                 offset = 0;
             }
