@@ -11,7 +11,7 @@ var CONST_GB_CURSOR_STOP_CLASS = "cursorGradientColor";
 var CONST_GB_CURSOR_LINE_CLASS = "barLine";
 
 class GradientBar extends Axis {
-    constructor(parent, values, padding) {
+    constructor(parent, values, padding, checkFirstValue) {
         //nicht zeichnen, da sonst alles über den Text
         super(parent, values, padding, false);
         //this.values = values;
@@ -20,6 +20,7 @@ class GradientBar extends Axis {
         this.svg_def = new Gradient(this.parent);
         //Erstellung der LinearGradients mit 3 Stops 1 ist Cursor
         //Index 0 und 1 ist Hintergrund
+        this.checkFirstValue = checkFirstValue;
         var idGradient = this.svg_def.addLinearGradient(null, null, null, null,
             "0", "stop0", "0", CONST_GB_CURSOR_STOP_CLASS, "100", "stop2");
         this.gradient = this.svg_def.elementById(idGradient).gradient;
@@ -32,7 +33,6 @@ class GradientBar extends Axis {
         this.line = new Line(parent);
         this.line.addClass(CONST_GB_CURSOR_LINE_CLASS);
         //Darstellung der Zahlen auf der Achse
-        //this.axis = new Axis(parent, values, padding, grid);
         super.drawAxis();
         //Axis muss initialisiert sein!
         this.setCursor(0);
@@ -84,6 +84,14 @@ class GradientBar extends Axis {
         }
 
         offset = Math.abs(offset - maxPercent);
+        if(this.checkFirstValue) {
+            //Zusätzlicher offset: Wie weit ist der erste Wert von 0 entfernt.
+            var distanceToFirstValue = parseFloat(this.sorted[0].textContent) * parseFloat(this.sorted[0].textWidthAttribute) / 100;
+            offset -= distanceToFirstValue + parseFloat(this.padding) / 100;
+            if(offset < 0) {
+                offset = 0;
+            }
+        }
 
         this.setCursor(offset * 100);
     }

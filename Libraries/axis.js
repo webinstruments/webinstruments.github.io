@@ -117,12 +117,18 @@ class Axis {
                 t => !isNaN(t.textContent) &&
                     parseFloat(t.textContent) >= parseFloat(val)
             );
-            if (textAbove != null && (this.maxText != textAbove || this.maxText == null)) {
+            if (textAbove != null) {
                 //zum markieren des Texts darunter - wird benötigt, wenn Abstände sehr groß sind
-                var textBelow = this.texts.find(
-                    t => !isNaN(t.text.textContent) &&
-                        parseFloat(t.textContent) < parseFloat(textAbove.textContent)
-                );
+                //Zuvor Prüfung, ob der Wert gleich ist. Da dann max = min
+                var textBelow = null;
+                if(parseFloat(textAbove.textContent) == val) {
+                    textBelow = textAbove;
+                } else {
+                    var preIndex = this.sorted.indexOf(textAbove) - 1;
+                    if(preIndex >= 0) {
+                        textBelow = this.sorted[preIndex];
+                    }
+                }
                 if (this.maxText != null) {
                     this.maxText.removeClass(CONST_AXIS_MAXTEXT_CLASS);
                 }

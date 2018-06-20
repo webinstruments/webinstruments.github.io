@@ -18,7 +18,7 @@
     stroke-opacity: 0.3;
 }
 
-.text.selectedValue {
+.text.selectedValueBelow {
     fill: orangered;
     stroke: black;
     stroke-width: 0.1;

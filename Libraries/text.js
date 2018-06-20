@@ -426,6 +426,14 @@ class Text {
         }
     }
 
+    get textWidthAttribute() {
+        if(this.svg_container == null) {
+            return this.text.getAttributeNS(null, "width");
+        } else {
+            return this.svg_container.getAttributeNS(null, "width");
+        }
+    }
+
     get textHeight() {
         if (this.svg_container == null) {
             return this.text.getBoundingClientRect().height;
