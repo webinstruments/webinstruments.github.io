@@ -11,7 +11,7 @@ var CONST_GB_CURSOR_STOP_CLASS = "cursorGradientColor";
 var CONST_GB_CURSOR_LINE_CLASS = "barLine";
 
 class GradientBar extends Axis {
-    constructor(parent, values, padding, checkFirstValue) {
+    constructor(parent, values, padding, checkDistribution) {
         //nicht zeichnen, da sonst alles über den Text
         super(parent, values, padding, false);
         //this.values = values;
@@ -20,7 +20,7 @@ class GradientBar extends Axis {
         this.svg_def = new Gradient(this.parent);
         //Erstellung der LinearGradients mit 3 Stops 1 ist Cursor
         //Index 0 und 1 ist Hintergrund
-        this.checkFirstValue = checkFirstValue;
+        this.checkDistribution = checkDistribution;
         var idGradient = this.svg_def.addLinearGradient(null, null, null, null,
             "0", "stop0", "0", CONST_GB_CURSOR_STOP_CLASS, "100", "stop2");
         this.gradient = this.svg_def.elementById(idGradient).gradient;
@@ -79,27 +79,37 @@ class GradientBar extends Axis {
         if(max == null || isNaN(max.textContent)) {
             return;   
         }
+        var maxValue = parseFloat(max.textContent);
         //der Maximalwert ist unten
-        var offset = val / parseFloat(max.textContent);
+        var offset = val / maxValue;
+        if(this.checkDistribution && this.values.length > 0 && this.maxText != null) {
+            var strideLen = 1 / this.values.length;
+            var maxVal = parseFloat(this.maxText.textContent);
+            //Erster Wert
+            if(this.belowText == null) {
+                offset = 0;
+            //Letzter Wert
+            } else if(val >= maxVal) {
+                //bleibt davor stehen
+                offset = strideLen * this.sorted.indexOf(this.maxText);
+            } else if(this.maxText != null) {
+                var minVal = parseFloat(this.belowText.textContent);
+                var maxVal = parseFloat(this.maxText.textContent);
+                var distance = maxVal - minVal;
+                val -= minVal;
+                offset = val / distance * strideLen + strideLen * this.sorted.indexOf(this.belowText);
+            }
+        }
         //maxValue von Basisklassen beinhaltet Element - Frage der Ausrichtung:
         if(this.alignment == CONST_GB_ALIGNMENT_VERTICAL) {
             //Wenn Wert z.B. 87% dann auf 100% aufrunden
-            var yVal = parseFloat(max.attributeY) / 100;
-            var maxPercent = 1 - Math.ceil(yVal);
+            var maxPercent = 1 - Math.ceil(parseFloat(max.attributeY) / 100);
             //Kann 0 oder 1 sein. Bei 1 ist es invertiert - MaxWert ist oben, bzw. ganz Links (x)
         } else {
             var maxPercent = 1 - Math.ceil(parseFloat(max.attributeX) / 100);
         }
 
         offset = Math.abs(offset - maxPercent);
-        if(this.checkFirstValue) {
-            //Zusätzlicher offset: Wie weit ist der erste Wert von 0 entfernt.
-            var valueDistribution = 1 / this.values.length;
-            offset -= valueDistribution; //- parseFloat(this.padding) / 200;
-            if(offset < 0) {
-                offset = 0;
-            }
-        }
 
         this.setCursor(offset * 100);
     }
