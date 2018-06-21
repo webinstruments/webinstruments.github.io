@@ -69,7 +69,7 @@ class GradientBar extends Axis {
     }
 
     selectValue(val) {
-        if(!isNaN(val)) {
+        if(isNaN(val)) {
             return;
         }
         //Für OnResize - damit eine Neuberechnung stattfinden kann
