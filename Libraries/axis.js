@@ -100,7 +100,7 @@ class Axis {
         //rauswerfen von nicht numerischen Werten, da sonst Fehler passieren
         this.sorted = this.texts.slice();
         for(var s in this.sorted) {
-            if(isNaN(this.sorted[s])) {
+            if(isNaN(this.sorted[s].textContent)) {
                 this.sorted.splice(s, 1);
             }
         }
