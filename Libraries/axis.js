@@ -97,7 +97,13 @@ class Axis {
         }
         //aufsteigend sortieren
         //Zwischenspeichern, sonst wird falsches sortiert.
+        //rauswerfen von nicht numerischen Werten, da sonst Fehler passieren
         this.sorted = this.texts.slice();
+        for(var s in this.sorted) {
+            if(isNaN(this.sorted[s])) {
+                this.sorted.splice(s, 1);
+            }
+        }
         this.sorted = this.sorted.sort((a, b) => (
             parseFloat(a.text.textContent) - parseFloat(b.text.textContent)
         ));
@@ -111,17 +117,27 @@ class Axis {
 
     //Suche nach dem nächsthöchsten Wert aus dem Werte Array
     selectValue(val) {
-        if (!isNaN(val)) {
+        if (!isNaN(val) && this.sorted.length > 0) {
+            val = parseFloat(val);
             this.lastValue = val;
             var textAbove = this.sorted.find(
                 t => !isNaN(t.textContent) &&
-                    parseFloat(t.textContent) >= parseFloat(val)
+                    parseFloat(t.textContent) >= val
             );
+            //Checken ob der Wert drüber war
+            if(this.textAbove == null) {
+                var lastText = this.sorted[this.sorted.length - 1];
+                if(!isNaN(lastText.textContent) && val > parseFloat(lastText)) {
+                    var textAbove = lastText;
+                }
+            }
             if (textAbove != null) {
                 //zum markieren des Texts darunter - wird benötigt, wenn Abstände sehr groß sind
                 //Zuvor Prüfung, ob der Wert gleich ist. Da dann max = min
+                //Auch wenn der aktuelle Wert den MaxWert übersteigt
                 var textBelow = null;
-                if(parseFloat(textAbove.textContent) == val) {
+                if(parseFloat(textAbove.textContent) == val || 
+                    this.sorted.indexOf(textAbove) == (this.sorted.length - 1)) {
                     textBelow = textAbove;
                 } else {
                     var preIndex = this.sorted.indexOf(textAbove) - 1;
