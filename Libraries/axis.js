@@ -136,7 +136,8 @@ class Axis {
                 //Zuvor Prüfung, ob der Wert gleich ist. Da dann max = min
                 //Auch wenn der aktuelle Wert den MaxWert übersteigt
                 var textBelow = null;
-                if(val >= parseFloat(textAbove.textContent)) {
+                if(val == parseFloat(textAbove.textContent) || 
+                    val >= parseFloat(this.sorted[this.sorted.length - 1].textContent)) {
                     textBelow = textAbove;
                 } else {
                     var preIndex = this.sorted.indexOf(textAbove) - 1;
