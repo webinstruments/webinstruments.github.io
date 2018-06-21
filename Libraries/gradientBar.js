@@ -69,12 +69,16 @@ class GradientBar extends Axis {
     }
 
     selectValue(val) {
-        if(!isNaN(val)) {
+        if(isNaN(val)) {
             return;
         }
         //Für OnResize - damit eine Neuberechnung stattfinden kann
         var max = this.sorted[this.sorted.length - 1];
         super.selectValue(val);
+        //sonst Absturz beim Initialisieren, wenn keine (gültige) Werte vorhanden.
+        if(max == null || isNaN(max.textContent)) {
+            return;   
+        }
         //der Maximalwert ist unten
         var offset = val / parseFloat(max.textContent);
         //maxValue von Basisklassen beinhaltet Element - Frage der Ausrichtung:
