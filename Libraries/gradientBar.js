@@ -76,7 +76,10 @@ class GradientBar extends Axis {
         var max = this.sorted[this.sorted.length - 1];
         super.selectValue(val);
         //der Maximalwert ist unten
-        var offset = val / parseFloat(max.textContent);
+        var offset = 0;
+        if(!isNaN(max.textContent)) {
+            offset = val / parseFloat(max.textContent);
+        }
         //maxValue von Basisklassen beinhaltet Element - Frage der Ausrichtung:
         if(this.alignment == CONST_GB_ALIGNMENT_VERTICAL) {
             //Wenn Wert z.B. 87% dann auf 100% aufrunden
