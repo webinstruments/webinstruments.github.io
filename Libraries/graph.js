@@ -208,8 +208,9 @@ class Graph {
             if (this.maxLine != null) {
                 this.maxIndicatorText.setText(val);
                 if (this.minLine != null) {
-                    var oldMin = this.graphMax - this.minLine.getAttribute("y1");
-                    var newMin = this.graphMax - oldMin * this.graphScale;
+                    var oldMin = parseFloat(this.minIndicatorText.textContent);
+                    var relation = oldMin / val;
+                    var newMin = this.clientHeight - this.clientHeight * relation;
                     this.moveLine(this.minLine, newMin);
                     this.moveText(this.minIndicatorText, newMin, null);
                 }
