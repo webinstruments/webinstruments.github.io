@@ -77,7 +77,7 @@ class GradientBar extends Axis {
         super.selectValue(val);
         //der Maximalwert ist unten
         var offset = 0;
-        if(!isNaN(max.textContent)) {
+        if(max != null && !isNaN(max.textContent)) {
             offset = val / parseFloat(max.textContent);
         }
         //maxValue von Basisklassen beinhaltet Element - Frage der Ausrichtung:
