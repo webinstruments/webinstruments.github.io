@@ -125,10 +125,10 @@ class Axis {
                     parseFloat(t.textContent) >= val
             );
             //Checken ob der Wert drüber war
-            if(this.textAbove == null) {
+            if(textAbove == null) {
                 var lastText = this.sorted[this.sorted.length - 1];
                 if(!isNaN(lastText.textContent) && val > parseFloat(lastText)) {
-                    var textAbove = lastText;
+                    textAbove = lastText;
                 }
             }
             if (textAbove != null) {
