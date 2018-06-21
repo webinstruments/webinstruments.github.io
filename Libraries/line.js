@@ -14,7 +14,9 @@ class Line {
         } else {
             this.horizontalAlign();
         }
-        this.move(position);
+        if(!isNaN(position)) {
+            this.move(position);
+        }
     }
 
     move(val) {

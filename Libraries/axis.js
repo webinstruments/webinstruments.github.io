@@ -11,6 +11,7 @@ class Axis {
     constructor(parent, values, padding, init) {
         this.parent = parent;
         this.values = values;
+        this.lastValue = null;
 
         this.texts = [];
         //Padding ist ein % Wert.
@@ -62,10 +63,8 @@ class Axis {
         this.removeValues();
         this.distributeValues();
         //Maxtest zurücksetzen um die Bedingung für Eintritt in die selectValue zu genügen
-        if (this.maxText != null) {
-            var lastValue = this.maxText.text.textContent;
-            this.maxText = null;
-            this.selectValue(lastValue);
+        if(!isNaN(this.lastValue)) {
+            this.selectValue(this.lastValue);
         }
     }
 
@@ -113,6 +112,7 @@ class Axis {
     //Suche nach dem nächsthöchsten Wert aus dem Werte Array
     selectValue(val) {
         if (!isNaN(val)) {
+            this.lastValue = val;
             var textAbove = this.sorted.find(
                 t => !isNaN(t.textContent) &&
                     parseFloat(t.textContent) >= parseFloat(val)

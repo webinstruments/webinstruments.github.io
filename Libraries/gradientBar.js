@@ -69,6 +69,7 @@ class GradientBar extends Axis {
     }
 
     selectValue(val) {
+        //Für OnResize - damit eine Neuberechnung stattfinden kann
         var max = this.sorted[this.sorted.length - 1];
         super.selectValue(val);
         //der Maximalwert ist unten
