@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>GradientBar</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="../controls.css" />
+</head>
+
+<body onresize="resized()">
+    <div style="height:90vh;width: 100%">
+        <svg id="bar" height="100%" width="100%" style="background-color: aqua;">
+        </svg>
+    </div>
+    <div>
+        <span style="float:left;font-size: 35px;width:5%;" id=val>0</span>
+        <input id="r" type="range" value="0" min=0 max=100 step="0.2" oninput="inputchange()" />
+    </div>
+</body>
+<script src="../Libraries/utilities.js"></script>
+<script src="../Libraries/text.js"></script>
+<script src="../Libraries/axis.js"></script>
+<script src="../Libraries/gradientBar.js"></script>
+<script src="../Libraries/line.js"></script>
+<script src="../Libraries/gradient.js"></script>
+<script>
+    var parent = document.getElementById("bar");
+    var gBar = new GradientBar(parent, [-10,5,10,20,21,22,30,70,90,100], "2%", true);
+
+    function inputchange() {
+        var r = document.getElementById("r").value;
+        document.getElementById("val").innerHTML = r;
+        gBar.selectValue(r);
+    }
+
+    function resized() {
+        if (gBar != null) {
+            gBar.onResize();
+        }
+    }
+</script>
+
+</html>
