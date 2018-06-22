@@ -11,7 +11,7 @@ var CONST_GB_CURSOR_STOP_CLASS = "cursorGradientColor";
 var CONST_GB_CURSOR_LINE_CLASS = "barLine";
 
 class GradientBar extends Axis {
-    constructor(parent, values, padding, checkDistribution) {
+    constructor(parent, values, padding, irregular) {
         //nicht zeichnen, da sonst alles über den Text
         super(parent, values, padding, false);
         //this.values = values;
@@ -20,7 +20,7 @@ class GradientBar extends Axis {
         this.svg_def = new Gradient(this.parent);
         //Erstellung der LinearGradients mit 3 Stops 1 ist Cursor
         //Index 0 und 1 ist Hintergrund
-        this.checkDistribution = checkDistribution;
+        this.irregular = irregular;
         var idGradient = this.svg_def.addLinearGradient(null, null, null, null,
             "0", "stop0", "0", CONST_GB_CURSOR_STOP_CLASS, "100", "stop2");
         this.gradient = this.svg_def.elementById(idGradient).gradient;
@@ -83,7 +83,7 @@ class GradientBar extends Axis {
         var maxValue = parseFloat(max.textContent);
         //der Maximalwert ist unten
         var offset = val / maxValue;
-        if(this.checkDistribution && this.values.length > 0 && this.maxText != null) {
+        if(this.irregular && this.values.length > 0 && this.maxText != null) {
             var strideLen = 1 / this.values.length;
             var maxVal = parseFloat(this.maxText.textContent);
             //Erster Wert
