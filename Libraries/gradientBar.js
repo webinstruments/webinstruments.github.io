@@ -33,10 +33,11 @@ class GradientBar extends Axis {
         this.line = new Line(parent);
         this.line.addClass(CONST_GB_CURSOR_LINE_CLASS);
         //Darstellung der Zahlen auf der Achse
-        super.drawAxis();
         //Axis muss initialisiert sein!
-        this.setCursor(0);
+        super.drawAxis();
         this.onResize();
+        this.setCursor(0);
+        this.selectValue(0);
     }
 
     //Damit Gradient von oben nach unten geht muss man den y1 Parameter auf 1 setzen.

@@ -15,7 +15,7 @@
     </div>
     <div>
         <span style="float:left;font-size: 35px;width:5%;" id=val>0</span>
-        <input id="r" type="range" value="0" min=0 max=100 step="0.2" oninput="inputchange()" />
+        <input id="r" type="range" value="0" min=-10 max=100 step="0.2" oninput="inputchange()" />
     </div>
 </body>
 <script src="../Libraries/utilities.js"></script>
@@ -26,7 +26,7 @@
 <script src="../Libraries/gradient.js"></script>
 <script>
     var parent = document.getElementById("bar");
-    var gBar = new GradientBar(parent, [10,9,8,7,6,5,4,3,2,1], "2%", true);
+    var gBar = new GradientBar(parent, [100,90,60,45,20,10,7,-10], "2%", true);
 
     function inputchange() {
         var r = document.getElementById("r").value;
