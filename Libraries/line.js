@@ -14,7 +14,7 @@ class Line {
         } else {
             this.horizontalAlign();
         }
-        if(!isNaN(position) || position.includes("%")) {
+        if(!isNaN(position) || (position != null && position.includes("%"))) {
             this.move(position);
         }
     }
