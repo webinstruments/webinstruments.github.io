@@ -66,7 +66,7 @@ class Graph {
             var factor = this.clientWidth / this.initialWidth;
             this.currX *= factor;
             this.translate *= factor;
-            this.setTranslation();
+            this.updateTranslation();
             this.initialWidth = this.clientWidth;
         }
         //Was in y Richtung gemacht werden muss
@@ -109,7 +109,7 @@ class Graph {
         this.nonTransGrp.appendChild(line);
     }
 
-    setTranslation() {
+    updateTranslation() {
         this.transgrp.setAttribute("transform", "translate(" + this.translate + ",0)");
     }
 
@@ -128,7 +128,11 @@ class Graph {
             */
             //Verschiebt um 5 Einheiten.
             this.translate = this.clientWidth - this.currX - 5 * this.stepWidth;
-            this.setTranslation();
+            while(this.plotter.pairs.findIndex(p => p.x < Math.abs(this.translate + this.stepWidth)) != -1) {
+                //das erste Element entfernen
+                this.plotter.pairs = this.plotter.pairs.slice(1, this.plotter.pairs.length);
+            }
+            this.updateTranslation();
         }
     }
 
