@@ -127,11 +127,9 @@ class Graph {
                 ---------------
             */
             //Verschiebt um 5 Einheiten.
-            this.translate = this.clientWidth - this.currX - 5 * this.stepWidth;
-            while(this.plotter.pairs.findIndex(p => p.x < Math.abs(this.translate + this.stepWidth)) != -1) {
-                //das erste Element entfernen
-                this.plotter.pairs = this.plotter.pairs.slice(1, this.plotter.pairs.length);
-            }
+            var buffer = 5;
+            this.translate = this.clientWidth - this.currX - buffer * this.stepWidth;
+            this.plotter.pairs = this.plotter.pairs.slice(buffer, this.plotter.pairs.length);
             this.updateTranslation();
         }
     }
