@@ -57,20 +57,35 @@ class Surface {
         var l_att = x + "," + y;
         //Sonst Endlosschleife mit Aufruf aus onResize
         if (!this.resizing) {
-            var idx = this.pairs.push({ x: x, y: y });
+            this.pairs.push({ x: x, y: y });
         }
         var z_att = x + "," + this.clientHeight + "Z";
         if (att === null) {
             att = "M" + x + "," + this.clientHeight;
-            att += "L" + l_att + "L" + z_att;
         } else {
-            let splitted = att.split("L");
-            splitted.pop();
-            splitted.push(l_att);
-            splitted.push(z_att);
-            att = splitted.join("L");
+            att = att.substr(0, att.lastIndexOf("L"));
         }
+        att += "L" + l_att + "L" + z_att;
 
+        this.surface.setAttribute("d", att);
+    }
+
+    removeFirst() {
+        this.pairs = this.pairs.slice(1, this.pairs.length);
+        var att = this.surface.getAttribute("d");
+        var firstL = att.indexOf("L");
+        firstL = att.indexOf("L", firstL + 1);
+        att = att.substr(firstL + 1); //beginnt erst mit 2. L
+        //M0,800L0,400L10,300L20,150
+        //Ziel->M10,800L10,300L20,150
+        //10
+        var firstVal = att.substr(0, att.indexOf(","));
+        //M10,800
+        var firstPair = "M" + firstVal + "," + this.clientHeight;
+        //L10,300
+        var secondPair = "L" + att.substr(0, att.indexOf("L"));
+        //M10,800L10,300L20,150...
+        att = firstPair + secondPair + att.substr(att.indexOf("L"));
         this.surface.setAttribute("d", att);
     }
 
@@ -152,6 +167,12 @@ class PolyLine {
             currAtt += "\n" + added;
         }
         this.poly.setAttribute("points", currAtt);
+    }
+
+    removeFirst() {
+        var att = this.poly.getAttribute("points");
+        att = att.indexOf(att.indexOf("\n") + 1);
+        this.poly.setAttribute("points", att);
     }
 
     get clientWidth() {

@@ -130,7 +130,7 @@ class Graph {
             this.translate = this.clientWidth - this.currX - 5 * this.stepWidth;
             while(this.plotter.pairs.findIndex(p => p.x < Math.abs(this.translate + this.stepWidth)) != -1) {
                 //das erste Element entfernen
-                this.plotter.pairs = this.plotter.pairs.slice(1, this.plotter.pairs.length);
+                this.plotter.removeFirst();
             }
             this.updateTranslation();
         }
