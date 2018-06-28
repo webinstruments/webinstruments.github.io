@@ -2,7 +2,7 @@ class Graph {
     //Parameter fillArea - Surface oder PolyLine
     //xValues = Anzahl an Werten auf der x-Achse
     //fillArea = ob Polyline (false) oder Path (true)
-    constructor(parent, xValues, fillArea, yAxis) {
+    constructor(parent, xValues, usePath, yAxis) {
         this.parent = parent;
         this.stepWidth = this.clientWidth / xValues;
         //Prozent pro Schritt;
@@ -17,10 +17,10 @@ class Graph {
         this.translate = 0;
         this.lineMinVal = NaN;
         this.lineMaxVal = NaN;
-        this.init(fillArea, yAxis);
+        this.init(usePath, yAxis);
     }
 
-    init(fillArea, yAxis) {
+    init(usePath, yAxis) {
         //Elemente in dieser Gruppe werden verschoben
         this.transgrp = this.parent.appendChild(createGroup());
         /*
@@ -30,11 +30,11 @@ class Graph {
             draw(x, y)
         */
         this.plotter = null;
-        if (fillArea == null || fillArea == false) {
+        if (usePath == null || !usePath) {
             //Zum Zeichnen der Polylinie
             this.polygrp = this.transgrp.appendChild(createGroup());
             this.plotter = new PolyLine(this.polygrp);
-        } else if (fillArea != null && fillArea == true) {
+        } else if (usePath != null && usePath) {
             //Zum Zeichnen der des Path Objekts - Ergibt Fläche unter dem Graphen
             this.surfgrp = this.transgrp.appendChild(createGroup());
             this.plotter = new Surface(this.surfgrp);
