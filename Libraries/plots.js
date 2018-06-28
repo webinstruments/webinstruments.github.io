@@ -170,6 +170,7 @@ class PolyLine {
     }
 
     removeFirst() {
+        this.pairs = this.pairs.slice(1, this.pairs.length);
         var att = this.poly.getAttribute("points");
         att = att.indexOf(att.indexOf("\n") + 1);
         this.poly.setAttribute("points", att);
