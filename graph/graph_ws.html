@@ -29,7 +29,7 @@
     var axisY = document.getElementById("axisY");
     var socket = io.connect('https://demo-webinstruments.azurewebsites.net');
     var g = new Graph(cont, 360, false, axisY);
-      socket.on('sinus', function (data) {
+      socket.on('sinus', function (data)) {
       addPoint(data.message);
     }
   
