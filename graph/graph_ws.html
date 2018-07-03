@@ -1,1 +1,45 @@
+<!DOCTYPE html>
+<html>
 
+<head>
+    <!--script type="text/javascript" src="svg_gauge.js"></script-->
+    <title>Adaptive Graph</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="../controls.css" />
+    <script src="../Libraries/utilities.js"></script>
+    <script src="../Libraries/graph.js"></script>
+    <script src="../Libraries/plots.js"></script>
+    <script src="../Libraries/plotAxis.js"></script>
+    <script src="../Libraries/axis.js"></script>
+    <script src="../Libraries/text.js"></script>
+    <script src="../Libraries/gradientBar.js"></script>
+    <script src="../Libraries/line.js"></script>
+    <script src="../Libraries/gradient.js"></script>
+</head>
+
+<body onresize="resized()">
+    <div style="width:100%;height:80vh;">
+        <svg id="axisY" style="float:left;" width="5%" height="100%"></svg>
+        <svg id="container" style="float:left;" width="95%" height="100%"></svg>
+    </div>
+</body>
+<script>
+    var max = 400;
+    var cont = document.getElementById("container");
+    var axisY = document.getElementById("axisY");
+    var socket = io.connect('https://demo-webinstruments.azurewebsites.net');
+    var g = new Graph(cont, 360, false, axisY);
+      socket.on('sinus', function (data) {
+      addPoint(data.message);
+    }
+  
+    function addPoint(points) {
+        //Workaround für kleine Geräte, da sonst die Achse abgeschnitten wird.
+         g.addValue(parseFloat(points));
+    }
+    function resized() {
+        g.onResize();
+    }
+</script>
+
+</html>
