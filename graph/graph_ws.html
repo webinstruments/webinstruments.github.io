@@ -36,7 +36,7 @@
   
     function addPoint(points) {
         //Workaround für kleine Geräte, da sonst die Achse abgeschnitten wird.
-         g.addValue(parseFloat(points));
+         g.addValue(parseFloat(parseFloat(points).toFixed(2)));
     }
     function resized() {
         g.onResize();
