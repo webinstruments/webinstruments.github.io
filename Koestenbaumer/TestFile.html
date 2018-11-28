@@ -1,0 +1,40 @@
+<html>
+    <head>
+<title>Webinstruments Test</title>
+ 	<meta charset='utf-8' /> 
+ <link rel="stylesheet" type="text/css" href="CSS/style.css" />
+<script src="JS/webcomponents-lite.js" type="text/javascript"></script>
+	
+    </head>
+<body height="100vh" width="100vw">
+<div id="cont">
+<div id="container1">
+<c-anzeige id="mySegm1" myvalue="1" col1="#000000"col2="#00FF00"></c-anzeige>
+</div>
+<div id="container2">
+<c-banzeige  id="mySegm2" myvalue="o" col1="#00FFF0" col2="#00FF00" colon=true></c-banzeige>
+</div>
+<div id="container1">
+<c-balken myvalue=10 id="mySegm3" from=1 to=21 col1="#000000" col2="#000000" col3="#000FFF"></c-balken>
+</div>
+<div id="container2">
+<c-tacho myvalue="5" id="mySegm4" to=10 fromZone=3 toZone=8 col1="#333333" col2="#00FFFF" col3="#FF0000" col4="#00FF00" ></c-tacho>
+</div>
+</div>
+<button onClick="randVal();">Random</button>
+
+</body>
+<script type="text/javascript" src="JS/Funktionen.js"></script>
+<script type="text/javascript" src="Klassen/7Segment.js"></script>
+<script type="text/javascript" src="Klassen/16Segment.js"></script>
+<script type="text/javascript" src="Klassen/Balken.js"></script>
+<script type="text/javascript" src="Klassen/Tacho.js"></script>
+<script>
+function randVal(){
+	document.getElementById("mySegm1").setAttribute('myvalue',parseInt((Math.random()*9)+1));
+	document.getElementById("mySegm2").setAttribute('myvalue',parseInt((Math.random()*9)+1));
+	document.getElementById("mySegm3").setAttribute('myvalue',parseInt((Math.random()*20)+1));
+	document.getElementById("mySegm4").setAttribute('myvalue',parseInt((Math.random()*9)+1));
+	}
+</script>
+</html>
